@@ -46,6 +46,7 @@ type
     function UpdatePessoa(Value: TPessoa): TPessoa;
     function InsertPessoa(Value: TPessoa): TPessoa;
     function DeletePessoa(Value: Integer): Boolean;
+    function InsertPessoasLote(Value: TObjectList<TPessoa>): Boolean;
     procedure AtualizarEnderecos;
   end;
 
@@ -78,7 +79,11 @@ begin
 
     while not vQry.Eof do
     begin
-      GravarEndereco(vQry.FieldByName('idendereco').AsLargeInt, vQry.FieldByName('dscep').AsString);
+      System.Classes.TThread.CreateAnonymousThread(
+      procedure
+      begin
+        GravarEndereco(vQry.FieldByName('idendereco').AsLargeInt, vQry.FieldByName('dscep').AsString);
+      end).Start;
       vQry.Next;
     end;
 
@@ -177,25 +182,27 @@ const
 var
   vObjetoCEP: TCEP;
 begin
-  vObjetoCEP := controllerViacep.BuscarCep(aCEP);
-  if Assigned(vObjetoCEP) then
+  if aCEP.Trim.Replace('-', '').Length = 8 then
   begin
-    try
-      FDConn.StartTransaction;
+    vObjetoCEP := controllerViacep.BuscarCep(aCEP);
+    if Assigned(vObjetoCEP) then
+    begin
       try
-        FDConn.ExecSQL(vInsertEndereco,
-          [aId, vObjetoCEP.uf, vObjetoCEP.localidade, vObjetoCEP.bairro, vObjetoCEP.logradouro, vObjetoCEP.complemento],
-          [ftLargeint, ftString, ftString, ftString, ftString, ftString]);
+        FDConn.StartTransaction;
+        try
+          FDConn.ExecSQL(vInsertEndereco,
+            [aId, vObjetoCEP.uf, vObjetoCEP.localidade, vObjetoCEP.bairro, vObjetoCEP.logradouro, vObjetoCEP.complemento],
+            [ftLargeint, ftString, ftString, ftString, ftString, ftString]);
 
-        FDConn.Commit;
-      except
-        FDConn.Rollback;
+          FDConn.Commit;
+        except
+          FDConn.Rollback;
+        end;
+      finally
+        vObjetoCEP.Free;
       end;
-    finally
-      vObjetoCEP.Free;
     end;
   end;
-
 end;
 
 function TdmConexao.InsertPessoa(Value: TPessoa): TPessoa;
@@ -220,13 +227,66 @@ begin
     FDConn.Rollback;
   end;
 
-  System.Classes.TThread.CreateAnonymousThread(
-    procedure
-    begin
-      AtualizarEnderecos;
-    end).Start;
+  AtualizarEnderecos;
 
   Result := Value;
+end;
+
+function TdmConexao.InsertPessoasLote(Value: TObjectList<TPessoa>): Boolean;
+const
+  vInsertPessoa = 'with rows as ( ' + 'INSERT INTO public.pessoa ' +
+    '(flnatureza, dsdocumento, nmprimeiro, nmsegundo, dtregistro) ' +
+    'VALUES(:flnatureza, :dsdocumento, :nmprimeiro, :nmsegundo, :dtregistro) RETURNING idpessoa '
+    + ') ' + 'INSERT INTO public.endereco ' + '(idpessoa, dscep) ' +
+    'VALUES((SELECT idpessoa FROM ROWS), :dscep) RETURNING idpessoa ; ';
+var
+  vQry: TFDQuery;
+  vPessoa: TPessoa;
+  I: Integer;
+begin
+  Result := False;
+
+  vQry := TFDQuery.Create(nil);
+  try
+    vQry.Connection := FDConn;
+    vQry.SQL.Clear;
+    vQry.SQL.Text := vInsertPessoa;
+
+    vQry.Params[0].DataType := ftSmallint;
+    vQry.Params[1].DataType := ftString;
+    vQry.Params[1].Size := 20;
+    vQry.Params[2].DataType := ftString;
+    vQry.Params[2].Size := 100;
+    vQry.Params[3].DataType := ftString;
+    vQry.Params[3].Size := 100;
+    vQry.Params[4].DataType := ftDate;
+    vQry.Params[5].DataType := ftString;
+    vQry.Params[5].Size := 15;
+    vQry.Params.ArraySize := Value.Count;
+
+    for I := 0 to Value.Count - 1 do
+    begin
+      vQry.Params[0].AsSmallInts[i] := Ord(Value[i].FlNatureza);
+      vQry.Params[1].AsStrings[i] := Value[i].DsDocumento;
+      vQry.Params[2].AsStrings[i] := Value[i].NmPrimeiro;
+      vQry.Params[3].AsStrings[i] := Value[i].NmSegundo;
+      vQry.Params[4].AsDates[i] := Value[i].DtRegistro;
+      vQry.Params[5].AsStrings[i] := Value[i].endereco.DsCep;
+    end;
+
+    FDConn.StartTransaction;
+    try
+      vQry.Execute(Value.Count, 0);
+      FDConn.Commit;
+      Result := True;
+    except
+      FDConn.Rollback;
+    end;
+
+  finally
+    vQry.Free;
+  end;
+
 end;
 
 function TdmConexao.UpdatePessoa(Value: TPessoa): TPessoa;
@@ -252,11 +312,7 @@ begin
     FDConn.Rollback;
   end;
 
-  System.Classes.TThread.CreateAnonymousThread(
-    procedure
-    begin
-      AtualizarEnderecos;
-    end).Start;
+  AtualizarEnderecos;
 
   Result := Value;
 end;

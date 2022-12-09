@@ -23,6 +23,7 @@ type
     function updatePessoas(Value: TJSONObject): TJSONObject;
     function acceptPessoas(Value: TJSONObject): TJSONObject;
     function deletePessoas(Value: Integer): Boolean;
+    function acceptPessoasLote(Value: TJSONArray): Boolean;
   end;
 
 {$METHODINFO OFF}
@@ -89,6 +90,21 @@ begin
     Result := TUtils.ObjectToJSON<TPessoa>(vPessoaResult);
   finally
     vPessoa.Free;
+    dmConexao.Free;
+  end;
+end;
+
+function TCadastro.acceptPessoasLote(Value: TJSONArray): Boolean;
+var
+  vListaPessoas: TObjectList<TPessoa>;
+begin
+
+  dmConexao := TdmConexao.Create(nil);
+  try
+    vListaPessoas := TUtils.JsonToObjectList<TPessoa>(Value.ToString);
+    Result := dmConexao.InsertPessoasLote(vListaPessoas);
+  finally
+    vListaPessoas.Free;
     dmConexao.Free;
   end;
 end;
