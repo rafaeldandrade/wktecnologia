@@ -10,13 +10,15 @@ uses
   view.listagem in 'src\view\view.listagem.pas' {frmListagem},
   view.cadastro in 'src\view\view.cadastro.pas' {frmCadastro},
   model.enums in 'src\model\model.enums.pas',
-  model.utils in 'src\model\utils\model.utils.pas';
+  model.utils in 'src\model\utils\model.utils.pas',
+  dao.pessoas in 'src\dao\dao.pessoas.pas' {daoPessoas: TDataModule};
 
 {$R *.res}
 
 begin
-  ReportMemoryLeaksOnShutdown := True;
+  //ReportMemoryLeaksOnShutdown := True;
   Application.Initialize;
+  Application.CreateForm(TdaoPessoas, daoPessoas);
   Application.CreateForm(TControllerPessoa, ControllerPessoa);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.Run;

@@ -96,9 +96,6 @@ type
     cbbNatureza: TComboBox;
     LinkListControlToField1: TLinkListControlToField;
     LinkPropertyToFieldItemIndex: TLinkPropertyToField;
-    Memo1: TMemo;
-    Button1: TButton;
-    procedure Button1Click(Sender: TObject);
     procedure cbbNaturezaChange(Sender: TObject);
   private
     { Private declarations }
@@ -112,11 +109,6 @@ var
 implementation
 
 {$R *.fmx}
-
-procedure TfrmCadastro.Button1Click(Sender: TObject);
-begin
-  ControllerPessoa.Salvar;
-end;
 
 procedure TfrmCadastro.cbbNaturezaChange(Sender: TObject);
 begin

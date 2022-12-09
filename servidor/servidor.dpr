@@ -14,7 +14,9 @@ uses
   model.enums in '..\cliente\src\model\model.enums.pas',
   server.conexao in 'src\server\server.conexao.pas' {dmConexao: TDataModule},
   model.entity.endereco in '..\cliente\src\model\entity\model.entity.endereco.pas',
-  model.entity.pessoa in '..\cliente\src\model\entity\model.entity.pessoa.pas';
+  model.entity.pessoa in '..\cliente\src\model\entity\model.entity.pessoa.pas',
+  model.cep in 'src\model\model.cep.pas',
+  controller.viacep in 'src\controller\controller.viacep.pas' {controllerViacep: TDataModule};
 
 {$R *.res}
 
@@ -23,5 +25,6 @@ begin
     WebRequestHandler.WebModuleClass := WebModuleClass;
   Application.Initialize;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TcontrollerViacep, controllerViacep);
   Application.Run;
 end.

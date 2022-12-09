@@ -85,7 +85,22 @@ procedure TWebModule1.DSRESTWebDispatcher1NameMap(Sender: TObject;
 begin
   if ClassName.Equals('cadastro') then
   begin
-    DSMethodName := 'TCadastro.' + MethodName;
+    if RequestType.Equals('GET') then
+    begin
+      DSMethodName := 'TCadastro.' + MethodName;
+    end else
+    if RequestType.Equals('PUT') then
+    begin
+      DSMethodName := 'TCadastro.accept' + MethodName;
+    end else
+    if RequestType.Equals('POST') then
+    begin
+      DSMethodName := 'TCadastro.update' + MethodName;
+    end else
+    if RequestType.Equals('DELETE') then
+    begin
+      DSMethodName := 'TCadastro.delete' + MethodName;
+    end;
   end;
 end;
 

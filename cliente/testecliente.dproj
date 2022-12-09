@@ -306,6 +306,11 @@
         </DCCReference>
         <DCCReference Include="src\model\model.enums.pas"/>
         <DCCReference Include="src\model\utils\model.utils.pas"/>
+        <DCCReference Include="src\dao\dao.pessoas.pas">
+            <Form>daoPessoas</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -1,0 +1,29 @@
+unit controller.viacep;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, REST.Types, REST.Client,
+  Data.Bind.Components, Data.Bind.ObjectScope;
+
+type
+  TcontrollerViacep = class(TDataModule)
+    RESTClient1: TRESTClient;
+    RESTRequest1: TRESTRequest;
+    RESTResponse1: TRESTResponse;
+  private
+    { Private declarations }
+  public
+
+  end;
+
+var
+  controllerViacep: TcontrollerViacep;
+
+implementation
+
+{%CLASSGROUP 'FMX.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

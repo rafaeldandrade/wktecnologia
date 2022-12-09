@@ -1,0 +1,48 @@
+unit controller.viacep;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, REST.Types, REST.Client,
+  Data.Bind.Components, Data.Bind.ObjectScope, model.cep;
+
+type
+  TcontrollerViacep = class(TDataModule)
+    RESTClient1: TRESTClient;
+    RESTRequest1: TRESTRequest;
+    RESTResponse1: TRESTResponse;
+  private
+    { Private declarations }
+  public
+    function BuscarCep(aCep: String): TCEP;
+  end;
+
+var
+  controllerViacep: TcontrollerViacep;
+
+implementation
+
+uses
+  model.utils;
+
+{%CLASSGROUP 'FMX.Controls.TControl'}
+
+{$R *.dfm}
+
+{ TcontrollerViacep }
+
+function TcontrollerViacep.BuscarCep(aCep: String): TCEP;
+var
+  vCEP: String;
+begin
+  vCEP := aCEP.Trim.Replace('-', '');
+  if vCEP.Length = 8 then
+  begin
+    RESTRequest1.Resource := vCEP + '/json/';
+    RESTRequest1.Execute;
+
+    Result := TUtils.JSONToObject<TCEP>(RESTResponse1.Content);
+  end;
+end;
+
+end.

@@ -5,23 +5,28 @@ interface
 uses
   System.SysUtils,
   System.Classes,
+  System.Threading,
   System.Generics.Collections,
   FireDAC.Stan.Intf,
   FireDAC.Stan.Option,
   FireDAC.Stan.Error,
-  FireDAC.UI.Intf,
-  FireDAC.Phys.Intf,
   FireDAC.Stan.Def,
   FireDAC.Stan.Pool,
   FireDAC.Stan.Async,
+  FireDAC.UI.Intf,
   FireDAC.Phys,
-  FireDAC.FMXUI.Wait,
-  Data.DB,
-  FireDAC.Comp.Client,
+  FireDAC.Phys.Intf,
   FireDAC.Phys.PGDef,
-  FireDAC.Comp.UI,
   FireDAC.Phys.PG,
+  FireDAC.Comp.UI,
+  FireDAC.Comp.Client,
+  FireDAC.FMXUI.Wait,
   FireDAC.DApt,
+  Data.DB,
+  //Data.Bind.Components,
+  //Data.Bind.ObjectScope,
+  //REST.Types,
+  //REST.Client,
   model.entity.endereco,
   model.entity.pessoa,
   model.enums,
@@ -35,12 +40,13 @@ type
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
-    { Private declarations }
+    procedure GravarEndereco(aId: Int64; aCEP: String);
   public
     function GetPessoas: TObjectList<TPessoa>;
     function UpdatePessoa(Value: TPessoa): TPessoa;
     function InsertPessoa(Value: TPessoa): TPessoa;
     function DeletePessoa(Value: Integer): Boolean;
+    procedure AtualizarEnderecos;
   end;
 
 var
@@ -50,7 +56,36 @@ implementation
 
 {%CLASSGROUP 'FMX.Controls.TControl'}
 
+uses
+  model.cep, controller.viacep;
+
 {$R *.dfm}
+
+procedure TdmConexao.AtualizarEnderecos;
+var
+  vQry: TFDQuery;
+begin
+  vQry := TFDQuery.Create(nil);
+  try
+    vQry.Connection := FDConn;
+    vQry.SQL.Clear;
+    vQry.SQL.Add('SELECT * ');
+    vQry.SQL.Add('FROM endereco e ');
+    vQry.SQL.Add
+      ('LEFT join endereco_integracao i on i.idendereco = e.idendereco ');
+    vQry.SQL.Add('WHERE i.idendereco IS NULL ');
+    vQry.Open;
+
+    while not vQry.Eof do
+    begin
+      GravarEndereco(vQry.FieldByName('idendereco').AsLargeInt, vQry.FieldByName('dscep').AsString);
+      vQry.Next;
+    end;
+
+  finally
+    vQry.Free;
+  end;
+end;
 
 procedure TdmConexao.DataModuleCreate(Sender: TObject);
 begin
@@ -64,15 +99,14 @@ end;
 
 function TdmConexao.DeletePessoa(Value: Integer): Boolean;
 const
-  vDeletePessoa = 'DELETE FROM public.pessoa ' +
-                  'WHERE idpessoa=:idpessoa; ';
+  vDeletePessoa = 'DELETE FROM public.pessoa ' + 'WHERE idpessoa=:idpessoa; ';
 begin
   Result := False;
   FDConn.StartTransaction;
   try
     FDConn.ExecSQL(vDeletePessoa,
-                   [Value],
-                   [ftLargeint]);
+      [Value],
+      [ftLargeint]);
 
     FDConn.Commit;
     Result := True;
@@ -93,11 +127,14 @@ begin
   try
     vQry.Connection := FDConn;
     vQry.SQL.Clear;
-    vQry.SQL.Add('SELECT p.idpessoa, p.flnatureza, p.dsdocumento, p.nmprimeiro, p.nmsegundo, p.dtregistro, ');
-    vQry.SQL.Add('e.idendereco, e.dscep, i.dsuf, i.nmcidade, i.nmbairro, i.nmlogradouro, i.dscomplemento ');
+    vQry.SQL.Add
+      ('SELECT p.idpessoa, p.flnatureza, p.dsdocumento, p.nmprimeiro, p.nmsegundo, p.dtregistro, ');
+    vQry.SQL.Add
+      ('e.idendereco, e.dscep, i.dsuf, i.nmcidade, i.nmbairro, i.nmlogradouro, i.dscomplemento ');
     vQry.SQL.Add('FROM PESSOA P  ');
     vQry.SQL.Add('join endereco e on e.idpessoa = p.idpessoa  ');
-    vQry.SQL.Add('LEFT join endereco_integracao i on i.idendereco = e.idendereco  ');
+    vQry.SQL.Add
+      ('LEFT join endereco_integracao i on i.idendereco = e.idendereco  ');
     vQry.Open;
 
     while not vQry.Eof do
@@ -105,7 +142,8 @@ begin
       vPessoa := TPessoa.New;
 
       vPessoa.IdPessoa := vQry.FieldByName('idpessoa').AsLargeInt;
-      vPessoa.FlNatureza := TNaturezaPessoa(vQry.FieldByName('flnatureza').AsInteger);
+      vPessoa.FlNatureza := TNaturezaPessoa(vQry.FieldByName('flnatureza')
+          .AsInteger);
       vPessoa.DsDocumento := vQry.FieldByName('dsdocumento').AsString;
       vPessoa.NmPrimeiro := vQry.FieldByName('nmprimeiro').AsString;
       vPessoa.NmSegundo := vQry.FieldByName('nmsegundo').AsString;
@@ -115,8 +153,10 @@ begin
       vPessoa.endereco.DsUF := vQry.FieldByName('dsuf').AsString;
       vPessoa.endereco.NmCidade := vQry.FieldByName('nmcidade').AsString;
       vPessoa.endereco.NmBairro := vQry.FieldByName('nmbairro').AsString;
-      vPessoa.endereco.NmLogradouro := vQry.FieldByName('nmlogradouro').AsString;
-      vPessoa.endereco.DsComplemento := vQry.FieldByName('dscomplemento').AsString;
+      vPessoa.endereco.NmLogradouro := vQry.FieldByName('nmlogradouro')
+        .AsString;
+      vPessoa.endereco.DsComplemento :=
+        vQry.FieldByName('dscomplemento').AsString;
 
       Result.Add(vPessoa);
 
@@ -129,32 +169,62 @@ begin
 
 end;
 
+procedure TdmConexao.GravarEndereco(aId: Int64; aCEP: String);
+const
+  vInsertEndereco = 'INSERT INTO public.endereco_integracao ' +
+    '(idendereco, dsuf, nmcidade, nmbairro, nmlogradouro, dscomplemento) ' +
+    'VALUES(:idendereco, :dsuf, :nmcidade, :nmbairro, :nmlogradouro, :dscomplemento); ';
+var
+  vObjetoCEP: TCEP;
+begin
+  vObjetoCEP := controllerViacep.BuscarCep(aCEP);
+  if Assigned(vObjetoCEP) then
+  begin
+    try
+      FDConn.StartTransaction;
+      try
+        FDConn.ExecSQL(vInsertEndereco,
+          [aId, vObjetoCEP.uf, vObjetoCEP.localidade, vObjetoCEP.bairro, vObjetoCEP.logradouro, vObjetoCEP.complemento],
+          [ftLargeint, ftString, ftString, ftString, ftString, ftString]);
+
+        FDConn.Commit;
+      except
+        FDConn.Rollback;
+      end;
+    finally
+      vObjetoCEP.Free;
+    end;
+  end;
+
+end;
+
 function TdmConexao.InsertPessoa(Value: TPessoa): TPessoa;
 const
-  vInsertPessoa = 'with rows as ( ' +
-                  'INSERT INTO public.pessoa ' +
-                  '(flnatureza, dsdocumento, nmprimeiro, nmsegundo, dtregistro) ' +
-                  'VALUES(:flnatureza, :dsdocumento, :nmprimeiro, :nmsegundo, :dtregistro) RETURNING idpessoa ' +
-                  ') ' +
-                  'INSERT INTO public.endereco ' +
-                  '(idpessoa, dscep) ' +
-                  'VALUES((SELECT idpessoa FROM ROWS), :dscep) RETURNING idpessoa ; ';
+  vInsertPessoa = 'with rows as ( ' + 'INSERT INTO public.pessoa ' +
+    '(flnatureza, dsdocumento, nmprimeiro, nmsegundo, dtregistro) ' +
+    'VALUES(:flnatureza, :dsdocumento, :nmprimeiro, :nmsegundo, :dtregistro) RETURNING idpessoa '
+    + ') ' + 'INSERT INTO public.endereco ' + '(idpessoa, dscep) ' +
+    'VALUES((SELECT idpessoa FROM ROWS), :dscep) RETURNING idpessoa ; ';
 var
   vIdPessoa: Int64;
 begin
   FDConn.StartTransaction;
   try
     vIdPessoa := FDConn.ExecSQLScalar(vInsertPessoa,
-                   [Value.FlNatureza, Value.DsDocumento, Value.NmPrimeiro, Value.NmSegundo, Value.DtRegistro, Value.endereco.DsCep],
-                   [ftSmallint, ftString, ftString, ftString, ftDate, ftString]);
-
+      [Value.FlNatureza, Value.DsDocumento, Value.NmPrimeiro, Value.NmSegundo,
+        Value.DtRegistro, Value.endereco.DsCep],
+      [ftSmallint, ftString, ftString, ftString, ftDate, ftString]);
     FDConn.Commit;
     Value.IdPessoa := vIdPessoa;
   except
     FDConn.Rollback;
   end;
 
-  //Atualiza CEP/Endereço
+  System.Classes.TThread.CreateAnonymousThread(
+    procedure
+    begin
+      AtualizarEnderecos;
+    end).Start;
 
   Result := Value;
 end;
@@ -162,27 +232,31 @@ end;
 function TdmConexao.UpdatePessoa(Value: TPessoa): TPessoa;
 const
   vUpdatePessoa = 'UPDATE public.pessoa ' +
-                  'SET flnatureza=:flnatureza, dsdocumento=:dsdocumento, nmprimeiro=:nmprimeiro, nmsegundo=:nmsegundo, dtregistro=:dtregistro ' +
-                  'WHERE idpessoa=:idpessoa; ';
-  vUpdateEndereco = 'UPDATE public.endereco ' +
-                    'SET dscep=:dscep ' +
-                    'WHERE idendereco=:idendereco; ';
+    'SET flnatureza=:flnatureza, dsdocumento=:dsdocumento, nmprimeiro=:nmprimeiro, nmsegundo=:nmsegundo, dtregistro=:dtregistro '
+    + 'WHERE idpessoa=:idpessoa; ';
+  vUpdateEndereco = 'UPDATE public.endereco ' + 'SET dscep=:dscep ' +
+    'WHERE idendereco=:idendereco; ';
 begin
   FDConn.StartTransaction;
   try
     FDConn.ExecSQL(vUpdatePessoa,
-                   [Value.FlNatureza, Value.DsDocumento, Value.NmPrimeiro, Value.NmSegundo, Value.DtRegistro, Value.IdPessoa],
-                   [ftSmallint, ftString, ftString, ftString, ftDate, ftLargeint]);
+      [Value.FlNatureza, Value.DsDocumento, Value.NmPrimeiro, Value.NmSegundo,
+        Value.DtRegistro, Value.IdPessoa],
+      [ftSmallint, ftString, ftString, ftString, ftDate, ftLargeint]);
 
     FDConn.ExecSQL(vUpdateEndereco,
-                   [Value.endereco.DsCep, Value.endereco.IdEndereco],
-                   [ftString, ftLargeint]);
+      [Value.endereco.DsCep, Value.endereco.IdEndereco],
+      [ftString, ftLargeint]);
     FDConn.Commit;
   except
     FDConn.Rollback;
   end;
 
-  //Atualiza CEP/Endereço
+  System.Classes.TThread.CreateAnonymousThread(
+    procedure
+    begin
+      AtualizarEnderecos;
+    end).Start;
 
   Result := Value;
 end;

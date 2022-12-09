@@ -13,7 +13,7 @@ uses
   model.entity.endereco,
   model.entity.pessoa,
   model.enums,
-  model.utils, System.Actions, FMX.ActnList;
+  model.utils, System.Actions, FMX.ActnList, dao.pessoas;
 
 type
   TControllerPessoa = class(TDataModule)
@@ -105,43 +105,12 @@ begin
   bsListaPessoas.Cancel;
   frmPrincipal.tbConteudo.SetActiveTabWithTransition
     (frmPrincipal.tbiLista,
-    TTabTransition.Slide, TTabTransitionDirection.Normal);
+    TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
 procedure TControllerPessoa.CarregarPessoas;
-var
-  vPessoa: TPessoa;
 begin
-  vPessoa := TPessoa.Create;
-  vPessoa.IdPessoa := 1;
-  vPessoa.FlNatureza := TNaturezaPessoa.FISICA;
-  vPessoa.DsDocumento := '123.123.123-12';
-  vPessoa.NmPrimeiro := 'Rafael';
-  vPessoa.NmSegundo := 'Silva';
-  vPessoa.DtRegistro := Now;
-  vPessoa.Endereco.DsCep := '72235-802';
-  FListaPessoas.Add(vPessoa);
-
-  vPessoa := TPessoa.Create;
-  vPessoa.IdPessoa := 2;
-  vPessoa.FlNatureza := TNaturezaPessoa.JURIDICA;
-  vPessoa.DsDocumento := '123.123.123-12';
-  vPessoa.NmPrimeiro := 'Nair';
-  vPessoa.NmSegundo := 'Andrade';
-  vPessoa.DtRegistro := Now;
-  vPessoa.Endereco.DsCep := '72235-803';
-  FListaPessoas.Add(vPessoa);
-
-  vPessoa := TPessoa.Create;
-  vPessoa.IdPessoa := 3;
-  vPessoa.FlNatureza := TNaturezaPessoa.FISICA;
-  vPessoa.DsDocumento := '123.123.123-12';
-  vPessoa.NmPrimeiro := 'Artur';
-  vPessoa.NmSegundo := 'Andrade';
-  vPessoa.DtRegistro := Now;
-  vPessoa.Endereco.DsCep := '72235-804';
-  FListaPessoas.Add(vPessoa);
-
+  daoPessoas.Carregar(FListaPessoas);
   bsListaPessoas.Refresh;
   bsListaPessoas.First;
 end;
@@ -155,8 +124,12 @@ begin
 end;
 
 procedure TControllerPessoa.Excluir;
+var
+  vPessoa: TPessoa;
 begin
-  bsListaPessoas.Delete;
+  vPessoa := TPessoa(pbsPessoa.InternalAdapter.Current);
+  daoPessoas.Excluir(vPessoa);
+  CarregarPessoas;
 end;
 
 procedure TControllerPessoa.InicializarPessoas;
@@ -201,13 +174,15 @@ end;
 
 procedure TControllerPessoa.PessoasAfterPost(Adapter: TBindSourceAdapter);
 var
-  vJsonObject: TJSONObject;
+  vPessoa: TPessoa;
 begin
-  vJsonObject := TUtils.ObjectToJSON<TPessoa>(TPessoa(pbsPessoa.InternalAdapter.Current));
-  try
-    frmCadastro.Memo1.lines.add(vJsonObject.ToString);
-  finally
-    vJsonObject.Free;
+  vPessoa := TPessoa(pbsPessoa.InternalAdapter.Current);
+  if vPessoa.IdPessoa = 0 then
+  begin
+    daoPessoas.Nova(vPessoa);
+  end else
+  begin
+    daoPessoas.Atualizar(vPessoa);
   end;
 end;
 
@@ -230,11 +205,11 @@ begin
     bsListaPessoas.Post;
   end;
 
-  //CarregarPessoas;
+  CarregarPessoas;
 
-  //frmPrincipal.tbConteudo.SetActiveTabWithTransition
-  //  (frmPrincipal.tbiCadastro,
-  //  TTabTransition.Slide, TTabTransitionDirection.Normal);
+  frmPrincipal.tbConteudo.SetActiveTabWithTransition
+    (frmPrincipal.tbiLista,
+    TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
 end.

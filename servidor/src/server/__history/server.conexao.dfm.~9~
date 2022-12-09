@@ -1,0 +1,37 @@
+object dmConexao: TdmConexao
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
+  Height = 480
+  Width = 640
+  object FDPhysPgDriverLink1: TFDPhysPgDriverLink
+    Left = 304
+    Top = 288
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'FMX'
+    Left = 304
+    Top = 352
+  end
+  object FDConn: TFDConnection
+    Params.Strings = (
+      'Database=testewk'
+      'User_Name=postgres'
+      'Password=Innovation@@#'
+      'CharacterSet=UTF8'
+      'ExtendedMetadata=True'
+      'ApplicationName=APITesteWK'
+      'Server=localhost'
+      'DriverID=PG')
+    FormatOptions.AssignedValues = [fvMapRules]
+    FormatOptions.OwnMapRules = True
+    FormatOptions.MapRules = <
+      item
+        SourceDataType = dtDateTimeStamp
+        TargetDataType = dtDateTime
+      end>
+    UpdateOptions.AssignedValues = [uvAutoCommitUpdates]
+    LoginPrompt = False
+    Left = 304
+    Top = 208
+  end
+end
