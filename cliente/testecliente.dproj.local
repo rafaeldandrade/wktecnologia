@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/12/07 11:11:02.000.373,=F:\Programação\Projetos\Unit1.pas</Transaction>
+    <Transaction>2022/12/07 11:14:28.000.440,F:\Programação\Projetos\Unit1.pas=F:\Programação\Projetos\Testes\wkt\cliente\src\view\testecliente.view.principal.pas</Transaction>
+    <Transaction>2022/12/07 11:14:28.000.440,F:\Programação\Projetos\Unit1.fmx=F:\Programação\Projetos\Testes\wkt\cliente\src\view\testecliente.view.principal.fmx</Transaction>
+    <Transaction>2022/12/07 11:14:46.000.289,F:\Programação\Projetos\Project1.dproj=F:\Programação\Projetos\Testes\wkt\cliente\testecliente.dproj</Transaction>
+    <Transaction>2022/12/07 16:26:06.000.382,=F:\Programação\Projetos\Testes\wkt\cliente\Unit1.pas</Transaction>
+    <Transaction>2022/12/07 16:37:19.000.209,F:\Programação\Projetos\Testes\wkt\cliente\Unit1.pas=F:\Programação\Projetos\Testes\wkt\cliente\src\model\entity\testecliente.model.entity.pessoa.pas</Transaction>
+    <Transaction>2022/12/07 17:00:32.000.939,=F:\Programação\Projetos\Testes\wkt\cliente\Unit1.pas</Transaction>
+    <Transaction>2022/12/07 17:10:48.000.995,F:\Programação\Projetos\Testes\wkt\cliente\Unit1.pas=F:\Programação\Projetos\Testes\wkt\cliente\src\model\entity\testecliente.model.entity.endereco.pas</Transaction>
+    <Transaction>2022/12/07 17:37:05.000.303,=F:\Programação\Projetos\Testes\wkt\cliente\Unit1.pas</Transaction>
+    <Transaction>2022/12/07 17:38:04.000.820,F:\Programação\Projetos\Testes\wkt\cliente\Unit1.dfm=F:\Programação\Projetos\Testes\wkt\cliente\src\model\testecliente.controller.pessoa.dfm</Transaction>
+    <Transaction>2022/12/07 17:38:04.000.820,F:\Programação\Projetos\Testes\wkt\cliente\Unit1.pas=F:\Programação\Projetos\Testes\wkt\cliente\src\model\testecliente.controller.pessoa.pas</Transaction>
+    <Transaction>2022/12/07 17:58:31.000.062,F:\Programação\Projetos\Testes\wkt\cliente\src\model\testecliente.controller.pessoa.pas=</Transaction>
+    <Transaction>2022/12/07 17:58:56.000.974,=F:\Programação\Projetos\Testes\wkt\cliente\src\controller\testecliente.controller.pessoa.pas</Transaction>
+    <Transaction>2022/12/07 17:59:05.000.231,F:\Programação\Projetos\Testes\wkt\cliente\src\controller\testecliente.controller.pessoa.pas=</Transaction>
+    <Transaction>2022/12/07 17:59:31.000.080,=F:\Programação\Projetos\Testes\wkt\cliente\src\controller\testecliente.controller.pessoa.pas</Transaction>
+    <Transaction>2022/12/07 18:01:00.000.778,=F:\Programação\Projetos\Testes\wkt\cliente\Unit1.pas</Transaction>
+    <Transaction>2022/12/07 18:04:14.000.309,F:\Programação\Projetos\Testes\wkt\cliente\Unit1.fmx=F:\Programação\Projetos\Testes\wkt\cliente\src\view\testecliente.view.listagem.fmx</Transaction>
+    <Transaction>2022/12/07 18:04:14.000.309,F:\Programação\Projetos\Testes\wkt\cliente\Unit1.pas=F:\Programação\Projetos\Testes\wkt\cliente\src\view\testecliente.view.listagem.pas</Transaction>
+    <Transaction>2022/12/07 22:56:14.000.932,F:\Programação\Projetos\Testes\wkt\cliente\src\view\testecliente.view.listagem.fmx=F:\Programação\Projetos\Testes\wkt\cliente\src\view\view.listagem.fmx</Transaction>
+    <Transaction>2022/12/07 22:56:14.000.932,F:\Programação\Projetos\Testes\wkt\cliente\src\view\testecliente.view.listagem.pas=F:\Programação\Projetos\Testes\wkt\cliente\src\view\view.listagem.pas</Transaction>
+    <Transaction>2022/12/07 22:56:29.000.611,F:\Programação\Projetos\Testes\wkt\cliente\src\view\testecliente.view.principal.fmx=F:\Programação\Projetos\Testes\wkt\cliente\src\view\view.principal.fmx</Transaction>
+    <Transaction>2022/12/07 22:56:29.000.611,F:\Programação\Projetos\Testes\wkt\cliente\src\view\testecliente.view.principal.pas=F:\Programação\Projetos\Testes\wkt\cliente\src\view\view.principal.pas</Transaction>
+    <Transaction>2022/12/07 22:56:47.000.961,F:\Programação\Projetos\Testes\wkt\cliente\src\model\entity\testecliente.model.entity.endereco.pas=F:\Programação\Projetos\Testes\wkt\cliente\src\model\entity\model.entity.endereco.pas</Transaction>
+    <Transaction>2022/12/07 22:56:59.000.270,F:\Programação\Projetos\Testes\wkt\cliente\src\model\entity\testecliente.model.entity.pessoa.pas=F:\Programação\Projetos\Testes\wkt\cliente\src\model\entity\model.entity.pessoa.pas</Transaction>
+    <Transaction>2022/12/07 22:57:12.000.838,F:\Programação\Projetos\Testes\wkt\cliente\src\controller\testecliente.controller.pessoa.dfm=F:\Programação\Projetos\Testes\wkt\cliente\src\controller\controller.pessoa.dfm</Transaction>
+    <Transaction>2022/12/07 22:57:12.000.838,F:\Programação\Projetos\Testes\wkt\cliente\src\controller\testecliente.controller.pessoa.pas=F:\Programação\Projetos\Testes\wkt\cliente\src\controller\controller.pessoa.pas</Transaction>
+    <Transaction>2022/12/07 22:59:11.000.828,=F:\Programação\Projetos\Testes\wkt\cliente\Unit1.pas</Transaction>
+    <Transaction>2022/12/07 22:59:45.000.718,F:\Programação\Projetos\Testes\wkt\cliente\Unit1.pas=F:\Programação\Projetos\Testes\wkt\cliente\src\view\view.cadastro.pas</Transaction>
+    <Transaction>2022/12/07 22:59:45.000.718,F:\Programação\Projetos\Testes\wkt\cliente\Unit1.fmx=F:\Programação\Projetos\Testes\wkt\cliente\src\view\view.cadastro.fmx</Transaction>
+    <Transaction>2022/12/08 09:19:31.000.557,=F:\Programação\Projetos\Testes\wkt\cliente\Unit1.pas</Transaction>
+    <Transaction>2022/12/08 09:20:38.000.205,F:\Programação\Projetos\Testes\wkt\cliente\Unit1.pas=F:\Programação\Projetos\Testes\wkt\cliente\src\model\model.enums.pas</Transaction>
+    <Transaction>2022/12/08 09:23:54.000.838,=F:\Programação\Projetos\Testes\wkt\cliente\Unit1.pas</Transaction>
+    <Transaction>2022/12/08 09:26:38.000.756,F:\Programação\Projetos\Testes\wkt\cliente\Unit1.pas=F:\Programação\Projetos\Testes\wkt\cliente\src\model\utils\model.utils.pas</Transaction>
+  </Transactions>
+</BorlandProject>

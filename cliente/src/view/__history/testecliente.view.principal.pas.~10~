@@ -1,0 +1,51 @@
+unit testecliente.view.principal;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects, FMX.Layouts,
+  FMX.Effects, FMX.MultiView, FMX.TabControl;
+
+type
+  TfrmPrincipal = class(TForm)
+    lytTitulo: TLayout;
+    recTitulo: TRectangle;
+    lblTitulo: TLabel;
+    mtvMenu: TMultiView;
+    lytConteudo: TLayout;
+    recMenu: TRectangle;
+    ShadowEffect1: TShadowEffect;
+    lytMenuTopo: TLayout;
+    btnMenu: TButton;
+    Rectangle1: TRectangle;
+    Layout1: TLayout;
+    lblMenuTitulo: TLabel;
+    btnCadastrar: TButton;
+    recFiltrarCor: TRoundRect;
+    ShadowEffect4: TShadowEffect;
+    lblFiltarTitulo: TLabel;
+    recFiltarImagem: TRoundRect;
+    imgFiltarImagem: TImage;
+    btnSair: TButton;
+    RoundRect1: TRoundRect;
+    ShadowEffect2: TShadowEffect;
+    Label1: TLabel;
+    RoundRect2: TRoundRect;
+    Image1: TImage;
+    tbConteudo: TTabControl;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPrincipal: TfrmPrincipal;
+
+implementation
+
+{$R *.fmx}
+
+end.

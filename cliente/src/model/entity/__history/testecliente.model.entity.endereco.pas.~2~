@@ -1,0 +1,36 @@
+unit testecliente.model.entity.endereco;
+
+interface
+
+uses testecliente.model.entity.pessoa;
+
+type
+  TEndereco = class
+  private
+    FIdEndereco: Int64;
+    FPessoa: TPessoa;
+    FDsCep: String;
+  public
+    property IdEndereco: Int64 read FIdEndereco write FIdEndereco;
+    property Pessoa: TPessoa read FPessoa write FPessoa;
+    property DsCep: String read FDsCep write FDsCep;
+
+    constructor Create(aPessoa: TPessoa);
+    class function New(aPessoa: TPessoa): TEndereco;
+  end;
+
+implementation
+
+{ TEndereco }
+
+constructor TEndereco.Create(aPessoa: TPessoa);
+begin
+  FPessoa := Pessoa;
+end;
+
+class function TEndereco.New(aPessoa: TPessoa): TEndereco;
+begin
+  Result := Self.Create(aPessoa);
+end;
+
+end.

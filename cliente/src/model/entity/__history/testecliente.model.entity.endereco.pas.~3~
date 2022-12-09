@@ -1,0 +1,26 @@
+unit testecliente.model.entity.endereco;
+
+interface
+
+type
+  TEndereco = class
+  private
+    FIdEndereco: Int64;
+    FDsCep: String;
+  public
+    property IdEndereco: Int64 read FIdEndereco write FIdEndereco;
+    property DsCep: String read FDsCep write FDsCep;
+
+    class function New: TEndereco;
+  end;
+
+implementation
+
+{ TEndereco }
+
+class function TEndereco.New: TEndereco;
+begin
+  Result := Self.Create;
+end;
+
+end.

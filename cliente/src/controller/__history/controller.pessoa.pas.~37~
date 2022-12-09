@@ -1,0 +1,200 @@
+unit controller.pessoa;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  System.Generics.Collections,
+  Data.Bind.Components,
+  Data.Bind.ObjectScope,
+  Data.Bind.GenData,
+  Fmx.Bind.GenData,
+  model.entity.endereco,
+  model.entity.pessoa,
+  model.enums,
+  model.utils, System.Actions, FMX.ActnList;
+
+type
+  TControllerPessoa = class(TDataModule)
+    pbsPessoa: TPrototypeBindSource;
+    pbsEndereco: TPrototypeBindSource;
+    actPessoas: TActionList;
+    actSalvar: TAction;
+    procedure pbsPessoaCreateAdapter(Sender: TObject;
+      var ABindSourceAdapter: TBindSourceAdapter);
+    procedure pbsEnderecoCreateAdapter(Sender: TObject;
+      var ABindSourceAdapter: TBindSourceAdapter);
+    procedure actSalvarExecute(Sender: TObject);
+  private
+    bsListaPessoas: TListBindSourceAdapter<TPessoa>;
+    bsEndereco: TObjectBindSourceAdapter<TEndereco>;
+    FListaPessoas: TObjectList<TPessoa>;
+    FEndereco: TEndereco;
+
+    procedure PessoasAfterScroll(Adapter: TBindSourceAdapter);
+    procedure PessoasAfterPost(Adapter: TBindSourceAdapter);
+  public
+    procedure InicializarPessoas;
+    procedure CarregarPessoas;
+    procedure Novo;
+    procedure Editar;
+    procedure Salvar;
+    procedure Cancelar;
+    procedure AtualizarNatureza(aNatureza: Integer);
+  end;
+
+var
+  ControllerPessoa: TControllerPessoa;
+
+implementation
+
+{%CLASSGROUP 'FMX.Controls.TControl'}
+
+uses view.principal, FMX.TabControl, view.cadastro, System.JSON;
+{$R *.dfm}
+
+procedure TControllerPessoa.actSalvarExecute(Sender: TObject);
+begin
+  Salvar;
+end;
+
+procedure TControllerPessoa.AtualizarNatureza(aNatureza: Integer);
+begin
+  TPessoa(pbsPessoa.InternalAdapter.Current).FlNatureza := TNaturezaPessoa(aNatureza);
+end;
+
+procedure TControllerPessoa.Cancelar;
+begin
+  bsListaPessoas.Cancel;
+  frmPrincipal.tbConteudo.SetActiveTabWithTransition
+    (frmPrincipal.tbiLista,
+    TTabTransition.Slide, TTabTransitionDirection.Normal);
+end;
+
+procedure TControllerPessoa.CarregarPessoas;
+var
+  vPessoa: TPessoa;
+begin
+  vPessoa := TPessoa.Create;
+  vPessoa.IdPessoa := 1;
+  vPessoa.FlNatureza := TNaturezaPessoa.FISICA;
+  vPessoa.DsDocumento := '123.123.123-12';
+  vPessoa.NmPrimeiro := 'Rafael';
+  vPessoa.NmSegundo := 'Silva';
+  vPessoa.DtRegistro := Now;
+  vPessoa.Endereco.DsCep := '72235-802';
+  FListaPessoas.Add(vPessoa);
+
+  vPessoa := TPessoa.Create;
+  vPessoa.IdPessoa := 2;
+  vPessoa.FlNatureza := TNaturezaPessoa.JURIDICA;
+  vPessoa.DsDocumento := '123.123.123-12';
+  vPessoa.NmPrimeiro := 'Nair';
+  vPessoa.NmSegundo := 'Andrade';
+  vPessoa.DtRegistro := Now;
+  vPessoa.Endereco.DsCep := '72235-803';
+  FListaPessoas.Add(vPessoa);
+
+  vPessoa := TPessoa.Create;
+  vPessoa.IdPessoa := 3;
+  vPessoa.FlNatureza := TNaturezaPessoa.FISICA;
+  vPessoa.DsDocumento := '123.123.123-12';
+  vPessoa.NmPrimeiro := 'Artur';
+  vPessoa.NmSegundo := 'Andrade';
+  vPessoa.DtRegistro := Now;
+  vPessoa.Endereco.DsCep := '72235-804';
+  FListaPessoas.Add(vPessoa);
+
+  bsListaPessoas.Refresh;
+  bsListaPessoas.Last;
+  bsListaPessoas.First;
+end;
+
+procedure TControllerPessoa.Editar;
+begin
+  bsListaPessoas.Edit;
+  frmPrincipal.tbConteudo.SetActiveTabWithTransition
+    (frmPrincipal.tbiCadastro,
+    TTabTransition.Slide, TTabTransitionDirection.Normal);
+end;
+
+procedure TControllerPessoa.InicializarPessoas;
+begin
+  if not Assigned(FListaPessoas) then
+  begin
+    FListaPessoas := TObjectList<TPessoa>.Create;
+  end;
+
+  bsListaPessoas.SetList(FListaPessoas, True);
+  bsListaPessoas.Active := True;
+
+  CarregarPessoas;
+end;
+
+procedure TControllerPessoa.Novo;
+begin
+  bsListaPessoas.Insert;
+  frmPrincipal.tbConteudo.SetActiveTabWithTransition
+    (frmPrincipal.tbiCadastro,
+    TTabTransition.Slide, TTabTransitionDirection.Normal);
+end;
+
+procedure TControllerPessoa.pbsEnderecoCreateAdapter(Sender: TObject;
+  var ABindSourceAdapter: TBindSourceAdapter);
+begin
+  bsEndereco := TObjectBindSourceAdapter<TEndereco>.Create(nil, FEndereco, False);
+  ABindSourceAdapter := bsEndereco;
+end;
+
+procedure TControllerPessoa.pbsPessoaCreateAdapter(Sender: TObject;
+  var ABindSourceAdapter: TBindSourceAdapter);
+begin
+  bsListaPessoas := TListBindSourceAdapter<TPessoa>.Create(nil,FListaPessoas,True);
+
+  ABindSourceAdapter := bsListaPessoas;
+  bsListaPessoas.AfterScroll := PessoasAfterScroll;
+  bsListaPessoas.AfterPost := PessoasAfterPost;
+
+  InicializarPessoas;
+end;
+
+procedure TControllerPessoa.PessoasAfterPost(Adapter: TBindSourceAdapter);
+var
+  vJsonObject: TJSONObject;
+begin
+  vJsonObject := TUtils.ObjectToJSON<TPessoa>(TPessoa(pbsPessoa.InternalAdapter.Current));
+  try
+    frmCadastro.Memo1.lines.add(vJsonObject.ToString);
+  finally
+    vJsonObject.Free;
+  end;
+end;
+
+procedure TControllerPessoa.PessoasAfterScroll(Adapter: TBindSourceAdapter);
+begin
+  FEndereco := bsListaPessoas.List[bsListaPessoas.CurrentIndex].endereco;
+  bsEndereco.SetDataObject(FEndereco, False);
+  bsEndereco.Active := True;
+end;
+
+procedure TControllerPessoa.Salvar;
+begin
+  if bsListaPessoas.State in [seInsert, seEdit] then
+  begin
+    if bsEndereco.State in [seInsert, seEdit] then
+    begin
+      bsEndereco.Post;
+    end;
+
+    bsListaPessoas.Post;
+  end;
+
+  //CarregarPessoas;
+
+  //frmPrincipal.tbConteudo.SetActiveTabWithTransition
+  //  (frmPrincipal.tbiCadastro,
+  //  TTabTransition.Slide, TTabTransitionDirection.Normal);
+end;
+
+end.

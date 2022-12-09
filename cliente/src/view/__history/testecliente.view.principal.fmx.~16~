@@ -1,0 +1,455 @@
+object frmPrincipal: TfrmPrincipal
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 716
+  ClientWidth = 1071
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object lytTitulo: TLayout
+    Align = MostTop
+    Size.Width = 1071.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object recTitulo: TRectangle
+      Align = Client
+      Fill.Color = xFF0018AA
+      Padding.Left = 10.000000000000000000
+      Padding.Top = 2.000000000000000000
+      Padding.Right = 10.000000000000000000
+      Padding.Bottom = 2.000000000000000000
+      Sides = [Bottom]
+      Size.Width = 1071.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      object lblTitulo: TLabel
+        Align = Client
+        StyledSettings = [Family]
+        Size.Width = 1051.000000000000000000
+        Size.Height = 29.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 20.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = claWhitesmoke
+        Text = 'Cadastro de Pessoas'
+        TabOrder = 0
+      end
+    end
+  end
+  object lytConteudo: TLayout
+    Align = Client
+    Margins.Left = 65.000000000000000000
+    Size.Width = 1006.000000000000000000
+    Size.Height = 683.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object tbConteudo: TTabControl
+      Align = Client
+      Size.Width = 1006.000000000000000000
+      Size.Height = 683.000000000000000000
+      Size.PlatformDefault = False
+      TabIndex = 0
+      TabOrder = 0
+      TabPosition = None
+      Sizes = (
+        1006s
+        683s
+        1006s
+        683s)
+      object tbiLista: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = True
+        Size.Width = 8.000000000000000000
+        Size.Height = 8.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'Lista'
+      end
+      object tbiCadastro: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = False
+        Size.Width = 8.000000000000000000
+        Size.Height = 8.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'Cadastro'
+      end
+    end
+  end
+  object mtvMenu: TMultiView
+    MasterButton = btnMenu
+    NavigationPaneOptions.CollapsedWidth = 65.000000000000000000
+    Size.Width = 250.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object recMenu: TRectangle
+      Align = Client
+      Fill.Color = xFFB3D8FF
+      Size.Width = 65.000000000000000000
+      Size.Height = 683.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      object ShadowEffect1: TShadowEffect
+        Distance = 3.000000000000000000
+        Direction = 45.000000000000000000
+        Softness = 0.300000011920929000
+        Opacity = 0.600000023841857900
+        ShadowColor = claBlack
+      end
+      object lytMenuTopo: TLayout
+        Align = Top
+        Size.Width = 65.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        object Rectangle1: TRectangle
+          Align = Client
+          Fill.Color = xC80018AA
+          Sides = [Right]
+          Size.Width = 65.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          object Layout1: TLayout
+            Align = Left
+            Size.Width = 65.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object btnMenu: TButton
+              Align = Client
+              Size.Width = 65.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'detailstoolbutton'
+              TabOrder = 0
+              Text = 'btnMenu'
+            end
+          end
+          object lblMenuTitulo: TLabel
+            Align = Client
+            StyledSettings = [Family]
+            Size.Width = 0.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 18.000000000000000000
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TextSettings.FontColor = claWhitesmoke
+            TextSettings.HorzAlign = Center
+            Text = 'Menu'
+            TabOrder = 1
+          end
+        end
+      end
+      object btnCadastrar: TButton
+        Align = Top
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 60.000000000000000000
+        Size.Width = 45.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'transparentcirclebuttonstyle'
+        TabOrder = 2
+        Text = 'Cadastrar'
+        object recFiltrarCor: TRoundRect
+          Align = Contents
+          Fill.Color = xFF91C640
+          HitTest = False
+          Margins.Top = 2.000000000000000000
+          Margins.Bottom = 2.000000000000000000
+          Size.Width = 45.000000000000000000
+          Size.Height = 45.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          object ShadowEffect4: TShadowEffect
+            Distance = 3.000000000000000000
+            Direction = 45.000000000000000000
+            Softness = 0.300000011920929000
+            Opacity = 0.600000023841857900
+            ShadowColor = claBlack
+          end
+          object lblFiltarTitulo: TLabel
+            Align = Client
+            StyledSettings = [Family]
+            Margins.Left = 20.000000000000000000
+            Size.Width = 25.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 16.000000000000000000
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TextSettings.FontColor = claWhite
+            TextSettings.HorzAlign = Center
+            Text = 'Cadastrar'
+            TabOrder = 0
+          end
+        end
+        object recFiltarImagem: TRoundRect
+          Align = Left
+          Fill.Color = claWhite
+          HitTest = False
+          Margins.Left = -1.000000000000000000
+          Position.X = -1.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 49.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          object imgFiltarImagem: TImage
+            MultiResBitmap.Height = 64
+            MultiResBitmap.Width = 64
+            MultiResBitmap = <
+              item
+                Width = 64
+                Height = 64
+                PNG = {
+                  89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+                  DE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                  025149444154785EEDDA3D4F145114C6F17366A3C4482416FA29282C5942228D
+                  81C468A5ADA19306428394C40E42E11A3B6DACE123D8B085ABA5059FC2020286
+                  972CE45EE73127446081D9D9393377F6DC5F73676613B2CF9F652B7875E7F5DD
+                  8707BF373CD12B22BE4726F8E384686BF7C1E377DCEA3C5D63E21579C5144F7E
+                  3D61E7E6E4DE9CF417FF26216E34E4DE9CF413D0483CD307B93787895AEC3DA5
+                  DF03D31F13A605796E8223FF79A9D99E4F23A41F056311CEC733A57F00C24A84
+                  FFC7E3FE3C000C7B84CBE3E1420018D608BDC6C39500306C11AE1B0F3D03C0B0
+                  44B8693C5C1B00EA1EE1B6F1706300A86B842CE3E1D60050B70859C743A60050
+                  9708FD8C87CC01A00611BE2C36B7DF661D0F7D05808023F43D1EFA0E000146C8
+                  351E7205808022E41E0FB903400011061A0F0305800A230C3C1E060E00154428
+                  643C1412004A8C50D878282C009410A1D0F1506800508C50F878283C00284450
+                  190F2A01E05F841FD39D8468421EE5E2887E2E35B72735C643FAFE74E00DB3A7
+                  3DB9CD0D3F436B3CA805A88B18404EB3620039CD8A01E4342B0690D3AC18404E
+                  B3620039CD8A01E4342B0690D3AC18404EB362003955B0A713B90C966A00CFF4
+                  5D2E83A51A606FECD127EF5CD0115403BC1FDFEA9E8E8ECC38E7DAF22838EA5F
+                  82CB4FBE1D9E8D8E3C0F35827A00083942290120D408A505801023941A00428B
+                  507A0008294225012094089505801022541A0010A14B672F1CF98E3CBA8099F6
+                  E55245E5016065AAF3A7EB4E677B45F0E436E55285DAFF08E5B1F1EBD9FD3B47
+                  DD75F6FCD2B1DB6D30B7169BEDAFF2B202A2BFC14754392027C5430000000049
+                  454E44AE426082}
+                FileName = 
+                  'F:\Programa'#231#227'o\Projetos\Testes\disys\imagens\ferramenta-de-filtr' +
+                  'o-forma-preta.png'
+              end>
+            Align = Client
+            Margins.Left = 9.000000000000000000
+            Margins.Top = 9.000000000000000000
+            Margins.Right = 9.000000000000000000
+            Margins.Bottom = 8.000000000000000000
+            Size.Width = 32.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+          end
+        end
+      end
+      object btnSair: TButton
+        Align = Bottom
+        Margins.Left = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 624.000000000000000000
+        Size.Width = 45.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'transparentcirclebuttonstyle'
+        TabOrder = 1
+        Text = 'Sair'
+        object RoundRect1: TRoundRect
+          Align = Contents
+          Fill.Color = xFF91C640
+          HitTest = False
+          Margins.Top = 2.000000000000000000
+          Margins.Bottom = 2.000000000000000000
+          Size.Width = 45.000000000000000000
+          Size.Height = 45.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          object ShadowEffect2: TShadowEffect
+            Distance = 3.000000000000000000
+            Direction = 45.000000000000000000
+            Softness = 0.300000011920929000
+            Opacity = 0.600000023841857900
+            ShadowColor = claBlack
+          end
+          object Label1: TLabel
+            Align = Client
+            StyledSettings = [Family]
+            Margins.Left = 20.000000000000000000
+            Size.Width = 25.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 16.000000000000000000
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TextSettings.FontColor = claWhite
+            TextSettings.HorzAlign = Center
+            Text = 'Sair'
+            TabOrder = 0
+          end
+        end
+        object RoundRect2: TRoundRect
+          Align = Left
+          Fill.Color = claWhite
+          HitTest = False
+          Margins.Left = -1.000000000000000000
+          Position.X = -1.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 49.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          object Image1: TImage
+            MultiResBitmap.Height = 64
+            MultiResBitmap.Width = 64
+            MultiResBitmap = <
+              item
+                Width = 64
+                Height = 64
+                PNG = {
+                  89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+                  DE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                  025149444154785EEDDA3D4F145114C6F17366A3C4482416FA29282C5942228D
+                  81C468A5ADA19306428394C40E42E11A3B6DACE123D8B085ABA5059FC2020286
+                  972CE45EE73127446081D9D9393377F6DC5F73676613B2CF9F652B7875E7F5DD
+                  8707BF373CD12B22BE4726F8E384686BF7C1E377DCEA3C5D63E21579C5144F7E
+                  3D61E7E6E4DE9CF417FF26216E34E4DE9CF413D0483CD307B93787895AEC3DA5
+                  DF03D31F13A605796E8223FF79A9D99E4F23A41F056311CEC733A57F00C24A84
+                  FFC7E3FE3C000C7B84CBE3E1420018D608BDC6C39500306C11AE1B0F3D03C0B0
+                  44B8693C5C1B00EA1EE1B6F1706300A86B842CE3E1D60050B70859C743A60050
+                  9708FD8C87CC01A00611BE2C36B7DF661D0F7D05808023F43D1EFA0E000146C8
+                  351E7205808022E41E0FB903400011061A0F0305800A230C3C1E060E00154428
+                  643C1412004A8C50D878282C009410A1D0F1506800508C50F878283C00284450
+                  190F2A01E05F841FD39D8468421EE5E2887E2E35B72735C643FAFE74E00DB3A7
+                  3DB9CD0D3F436B3CA805A88B18404EB3620039CD8A01E4342B0690D3AC18404E
+                  B3620039CD8A01E4342B0690D3AC18404EB362003955B0A713B90C966A00CFF4
+                  5D2E83A51A606FECD127EF5CD0115403BC1FDFEA9E8E8ECC38E7DAF22838EA5F
+                  82CB4FBE1D9E8D8E3C0F35827A00083942290120D408A505801023941A00428B
+                  507A0008294225012094089505801022541A0010A14B672F1CF98E3CBA8099F6
+                  E55245E5016065AAF3A7EB4E677B45F0E436E55285DAFF08E5B1F1EBD9FD3B47
+                  DD75F6FCD2B1DB6D30B7169BEDAFF2B202A2BFC14754392027C5430000000049
+                  454E44AE426082}
+                FileName = 
+                  'F:\Programa'#231#227'o\Projetos\Testes\disys\imagens\ferramenta-de-filtr' +
+                  'o-forma-preta.png'
+              end>
+            Align = Client
+            Margins.Left = 9.000000000000000000
+            Margins.Top = 9.000000000000000000
+            Margins.Right = 9.000000000000000000
+            Margins.Bottom = 8.000000000000000000
+            Size.Width = 32.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+          end
+        end
+      end
+      object btnFiltrar: TButton
+        Align = Top
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 119.000000000000000000
+        Size.Width = 45.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'transparentcirclebuttonstyle'
+        TabOrder = 0
+        Text = 'Filtrar'
+        object RoundRect3: TRoundRect
+          Align = Contents
+          Fill.Color = xFF91C640
+          HitTest = False
+          Margins.Top = 2.000000000000000000
+          Margins.Bottom = 2.000000000000000000
+          Size.Width = 45.000000000000000000
+          Size.Height = 45.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          object ShadowEffect3: TShadowEffect
+            Distance = 3.000000000000000000
+            Direction = 45.000000000000000000
+            Softness = 0.300000011920929000
+            Opacity = 0.600000023841857900
+            ShadowColor = claBlack
+          end
+          object Label2: TLabel
+            Align = Client
+            StyledSettings = [Family]
+            Margins.Left = 20.000000000000000000
+            Size.Width = 25.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 16.000000000000000000
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TextSettings.FontColor = claWhite
+            TextSettings.HorzAlign = Center
+            Text = 'Filtrar'
+            TabOrder = 0
+          end
+        end
+        object RoundRect4: TRoundRect
+          Align = Left
+          Fill.Color = claWhite
+          HitTest = False
+          Margins.Left = -1.000000000000000000
+          Position.X = -1.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 49.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          object Image2: TImage
+            MultiResBitmap.Height = 64
+            MultiResBitmap.Width = 64
+            MultiResBitmap = <
+              item
+                Width = 64
+                Height = 64
+                PNG = {
+                  89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+                  DE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                  025149444154785EEDDA3D4F145114C6F17366A3C4482416FA29282C5942228D
+                  81C468A5ADA19306428394C40E42E11A3B6DACE123D8B085ABA5059FC2020286
+                  972CE45EE73127446081D9D9393377F6DC5F73676613B2CF9F652B7875E7F5DD
+                  8707BF373CD12B22BE4726F8E384686BF7C1E377DCEA3C5D63E21579C5144F7E
+                  3D61E7E6E4DE9CF417FF26216E34E4DE9CF413D0483CD307B93787895AEC3DA5
+                  DF03D31F13A605796E8223FF79A9D99E4F23A41F056311CEC733A57F00C24A84
+                  FFC7E3FE3C000C7B84CBE3E1420018D608BDC6C39500306C11AE1B0F3D03C0B0
+                  44B8693C5C1B00EA1EE1B6F1706300A86B842CE3E1D60050B70859C743A60050
+                  9708FD8C87CC01A00611BE2C36B7DF661D0F7D05808023F43D1EFA0E000146C8
+                  351E7205808022E41E0FB903400011061A0F0305800A230C3C1E060E00154428
+                  643C1412004A8C50D878282C009410A1D0F1506800508C50F878283C00284450
+                  190F2A01E05F841FD39D8468421EE5E2887E2E35B72735C643FAFE74E00DB3A7
+                  3DB9CD0D3F436B3CA805A88B18404EB3620039CD8A01E4342B0690D3AC18404E
+                  B3620039CD8A01E4342B0690D3AC18404EB362003955B0A713B90C966A00CFF4
+                  5D2E83A51A606FECD127EF5CD0115403BC1FDFEA9E8E8ECC38E7DAF22838EA5F
+                  82CB4FBE1D9E8D8E3C0F35827A00083942290120D408A505801023941A00428B
+                  507A0008294225012094089505801022541A0010A14B672F1CF98E3CBA8099F6
+                  E55245E5016065AAF3A7EB4E677B45F0E436E55285DAFF08E5B1F1EBD9FD3B47
+                  DD75F6FCD2B1DB6D30B7169BEDAFF2B202A2BFC14754392027C5430000000049
+                  454E44AE426082}
+                FileName = 
+                  'F:\Programa'#231#227'o\Projetos\Testes\disys\imagens\ferramenta-de-filtr' +
+                  'o-forma-preta.png'
+              end>
+            Align = Client
+            Margins.Left = 9.000000000000000000
+            Margins.Top = 9.000000000000000000
+            Margins.Right = 9.000000000000000000
+            Margins.Bottom = 8.000000000000000000
+            Size.Width = 32.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+          end
+        end
+      end
+    end
+  end
+end

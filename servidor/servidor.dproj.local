@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2022/12/08 22:13:26.532,=F:\Programação\Projetos\Testes\wkt\servidor\FormUnit1.pas</Transaction>
+    <Transaction>2022/12/08 22:13:26.892,=F:\Programação\Projetos\Testes\wkt\servidor\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2022/12/08 22:13:27.189,=F:\Programação\Projetos\Testes\wkt\servidor\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2022/12/08 22:13:27.626,=F:\Programação\Projetos\Testes\wkt\servidor\WebModuleUnit1.pas</Transaction>
+    <Transaction>2022/12/08 22:13:28.017,=F:\Programação\Projetos\Testes\wkt\servidor\js\base64.js</Transaction>
+    <Transaction>2022/12/08 22:13:28.064,=F:\Programação\Projetos\Testes\wkt\servidor\js\serverfunctionexecutor.js</Transaction>
+    <Transaction>2022/12/08 22:13:28.458,=F:\Programação\Projetos\Testes\wkt\servidor\js\json2.js</Transaction>
+    <Transaction>2022/12/08 22:13:28.536,=F:\Programação\Projetos\Testes\wkt\servidor\js\callbackframework.js</Transaction>
+    <Transaction>2022/12/08 22:13:28.605,=F:\Programação\Projetos\Testes\wkt\servidor\js\serverfunctions.js</Transaction>
+    <Transaction>2022/12/08 22:13:28.709,=F:\Programação\Projetos\Testes\wkt\servidor\js\base64-min.js</Transaction>
+    <Transaction>2022/12/08 22:13:28.803,=F:\Programação\Projetos\Testes\wkt\servidor\js\json2-min.js</Transaction>
+    <Transaction>2022/12/08 22:13:28.912,=F:\Programação\Projetos\Testes\wkt\servidor\js\serverfunctionexecutor-min.js</Transaction>
+    <Transaction>2022/12/08 22:13:28.990,=F:\Programação\Projetos\Testes\wkt\servidor\js\callbackframework-min.js</Transaction>
+    <Transaction>2022/12/08 22:14:14.924,F:\Programação\Projetos\Testes\wkt\servidor\src\view\view.principal.pas=F:\Programação\Projetos\Testes\wkt\servidor\FormUnit1.pas</Transaction>
+    <Transaction>2022/12/08 22:14:14.924,F:\Programação\Projetos\Testes\wkt\servidor\src\view\view.principal.fmx=F:\Programação\Projetos\Testes\wkt\servidor\FormUnit1.fmx</Transaction>
+    <Transaction>2022/12/08 22:15:21.607,F:\Programação\Projetos\Testes\wkt\servidor\src\server\server.container.dfm=F:\Programação\Projetos\Testes\wkt\servidor\ServerContainerUnit1.dfm</Transaction>
+    <Transaction>2022/12/08 22:15:21.607,F:\Programação\Projetos\Testes\wkt\servidor\src\server\server.container.pas=F:\Programação\Projetos\Testes\wkt\servidor\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2022/12/08 22:22:38.304,F:\Programação\Projetos\Testes\wkt\servidor\src\server\server.methods.pessoa.pas=F:\Programação\Projetos\Testes\wkt\servidor\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2022/12/08 22:22:59.356,F:\Programação\Projetos\Testes\wkt\servidor\src\server\server.webmodule.pas=F:\Programação\Projetos\Testes\wkt\servidor\WebModuleUnit1.pas</Transaction>
+    <Transaction>2022/12/08 22:22:59.356,F:\Programação\Projetos\Testes\wkt\servidor\src\server\server.webmodule.dfm=F:\Programação\Projetos\Testes\wkt\servidor\WebModuleUnit1.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

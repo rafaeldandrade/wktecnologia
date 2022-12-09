@@ -1,0 +1,707 @@
+object frmCadastro: TfrmCadastro
+  Left = 0
+  Top = 0
+  Caption = 'Cadastro'
+  ClientHeight = 568
+  ClientWidth = 747
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object lytGeral: TLayout
+    Align = Client
+    Size.Width = 747.000000000000000000
+    Size.Height = 568.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object gpbEndereco: TGroupBox
+      Align = Client
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Size.Width = 727.000000000000000000
+      Size.Height = 282.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Endere'#231'o'
+      TabOrder = 0
+      object Layout7: TLayout
+        Padding.Left = 5.000000000000000000
+        Padding.Top = 5.000000000000000000
+        Padding.Right = 5.000000000000000000
+        Padding.Bottom = 5.000000000000000000
+        Position.X = 8.000000000000000000
+        Position.Y = 22.000000000000000000
+        Size.Width = 585.000000000000000000
+        Size.Height = 34.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 5
+        object Label7: TLabel
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 140.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = claDarkblue
+          Text = 'CEP'
+          TabOrder = 1
+        end
+        object Line8: TLine
+          Align = Client
+          HitTest = False
+          LineType = Bottom
+          Size.Width = 435.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object edtCEP: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          StyleLookup = 'transparentedit'
+          TabOrder = 0
+          Text = '-33'
+          TextSettings.Font.Size = 14.000000000000000000
+          Size.Width = 435.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, Style, FontColor]
+        end
+      end
+      object lytEdit: TLayout
+        Padding.Left = 5.000000000000000000
+        Padding.Top = 5.000000000000000000
+        Padding.Right = 5.000000000000000000
+        Padding.Bottom = 5.000000000000000000
+        Position.X = 8.000000000000000000
+        Position.Y = 59.000000000000000000
+        Size.Width = 585.000000000000000000
+        Size.Height = 34.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        object lblTitulo: TLabel
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 140.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = claDarkblue
+          Text = 'Logradouro'
+          TabOrder = 1
+        end
+        object Line1: TLine
+          Align = Client
+          HitTest = False
+          LineType = Bottom
+          Size.Width = 435.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object edtLogradouro: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          StyleLookup = 'transparentedit'
+          TabOrder = 0
+          Text = 'Darkgoldenrod'
+          TextSettings.Font.Size = 14.000000000000000000
+          Size.Width = 435.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, Style, FontColor]
+        end
+      end
+      object Layout8: TLayout
+        Padding.Left = 5.000000000000000000
+        Padding.Top = 5.000000000000000000
+        Padding.Right = 5.000000000000000000
+        Padding.Bottom = 5.000000000000000000
+        Position.X = 8.000000000000000000
+        Position.Y = 96.000000000000000000
+        Size.Width = 585.000000000000000000
+        Size.Height = 34.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        object Label8: TLabel
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 140.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = claDarkblue
+          Text = 'Complemento'
+          TabOrder = 1
+        end
+        object Line9: TLine
+          Align = Client
+          HitTest = False
+          LineType = Bottom
+          Size.Width = 435.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object edtComplemento: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          StyleLookup = 'transparentedit'
+          TabOrder = 0
+          Text = 'Software Engineer'
+          TextSettings.Font.Size = 14.000000000000000000
+          Size.Width = 435.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, Style, FontColor]
+        end
+      end
+      object Layout9: TLayout
+        Padding.Left = 5.000000000000000000
+        Padding.Top = 5.000000000000000000
+        Padding.Right = 5.000000000000000000
+        Padding.Bottom = 5.000000000000000000
+        Position.X = 8.000000000000000000
+        Position.Y = 133.000000000000000000
+        Size.Width = 585.000000000000000000
+        Size.Height = 34.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        object Label9: TLabel
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 140.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = claDarkblue
+          Text = 'Bairro'
+          TabOrder = 1
+        end
+        object Line10: TLine
+          Align = Client
+          HitTest = False
+          LineType = Bottom
+          Size.Width = 435.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object edtBairro: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          StyleLookup = 'transparentedit'
+          TabOrder = 0
+          Text = 'Bitmap28'
+          TextSettings.Font.Size = 14.000000000000000000
+          Size.Width = 435.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, Style, FontColor]
+        end
+      end
+      object Layout10: TLayout
+        Padding.Left = 5.000000000000000000
+        Padding.Top = 5.000000000000000000
+        Padding.Right = 5.000000000000000000
+        Padding.Bottom = 5.000000000000000000
+        Position.X = 8.000000000000000000
+        Position.Y = 170.000000000000000000
+        Size.Width = 585.000000000000000000
+        Size.Height = 34.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object Label10: TLabel
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 140.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = claDarkblue
+          Text = 'Cidade'
+          TabOrder = 1
+        end
+        object Line11: TLine
+          Align = Client
+          HitTest = False
+          LineType = Bottom
+          Size.Width = 435.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object edtCidade: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          StyleLookup = 'transparentedit'
+          TabOrder = 0
+          Text = 'Darkgoldenrod'
+          TextSettings.Font.Size = 14.000000000000000000
+          Size.Width = 435.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, Style, FontColor]
+        end
+      end
+      object Layout11: TLayout
+        Padding.Left = 5.000000000000000000
+        Padding.Top = 5.000000000000000000
+        Padding.Right = 5.000000000000000000
+        Padding.Bottom = 5.000000000000000000
+        Position.X = 8.000000000000000000
+        Position.Y = 207.000000000000000000
+        Size.Width = 209.000000000000000000
+        Size.Height = 34.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object Label11: TLabel
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 140.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = claDarkblue
+          Text = 'UF'
+          TabOrder = 1
+        end
+        object Line12: TLine
+          Align = Client
+          HitTest = False
+          LineType = Bottom
+          Size.Width = 59.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object edtUF: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          StyleLookup = 'transparentedit'
+          TabOrder = 0
+          Text = 'Bitmap28'
+          TextSettings.Font.Size = 14.000000000000000000
+          Size.Width = 59.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, Style, FontColor]
+        end
+      end
+    end
+    object gpbPessoa: TGroupBox
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 727.000000000000000000
+      Size.Height = 256.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Pessoa'
+      TabOrder = 1
+      object Layout1: TLayout
+        Padding.Left = 5.000000000000000000
+        Padding.Top = 5.000000000000000000
+        Padding.Right = 5.000000000000000000
+        Padding.Bottom = 5.000000000000000000
+        Position.X = 8.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 297.000000000000000000
+        Size.Height = 34.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 5
+        object Label1: TLabel
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 140.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = claDarkblue
+          Text = 'Id'
+          TabOrder = 1
+        end
+        object Line2: TLine
+          Align = Client
+          HitTest = False
+          LineType = Bottom
+          Size.Width = 147.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object edtId: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          StyleLookup = 'transparentedit'
+          TabOrder = 0
+          Text = '67'
+          TextSettings.Font.Size = 14.000000000000000000
+          Size.Width = 147.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, Style, FontColor]
+        end
+      end
+      object Layout2: TLayout
+        Padding.Left = 5.000000000000000000
+        Padding.Top = 5.000000000000000000
+        Padding.Right = 5.000000000000000000
+        Padding.Bottom = 5.000000000000000000
+        Position.X = 8.000000000000000000
+        Position.Y = 53.000000000000000000
+        Size.Width = 353.000000000000000000
+        Size.Height = 34.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        object Label2: TLabel
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 140.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = claDarkblue
+          Text = 'Natureza'
+          TabOrder = 1
+        end
+        object Line3: TLine
+          Align = Client
+          HitTest = False
+          LineType = Bottom
+          Size.Width = 203.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object edtNatureza: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          StyleLookup = 'transparentedit'
+          TabOrder = 0
+          Text = '-33'
+          TextSettings.Font.Size = 14.000000000000000000
+          Size.Width = 203.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, Style, FontColor]
+          object cbbNatureza: TComboBox
+            Align = Client
+            Items.Strings = (
+              'F'#205'SICA'
+              'JUR'#205'DICA')
+            Size.Width = 203.000000000000000000
+            Size.Height = 24.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            OnChange = cbbNaturezaChange
+          end
+        end
+      end
+      object Layout3: TLayout
+        Padding.Left = 5.000000000000000000
+        Padding.Top = 5.000000000000000000
+        Padding.Right = 5.000000000000000000
+        Padding.Bottom = 5.000000000000000000
+        Position.X = 8.000000000000000000
+        Position.Y = 90.000000000000000000
+        Size.Width = 585.000000000000000000
+        Size.Height = 34.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        object Label3: TLabel
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 140.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = claDarkblue
+          Text = 'Documento'
+          TabOrder = 1
+        end
+        object Line4: TLine
+          Align = Client
+          HitTest = False
+          LineType = Bottom
+          Size.Width = 435.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object edtDocumento: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          StyleLookup = 'transparentedit'
+          TabOrder = 0
+          Text = 'Darkgoldenrod'
+          TextSettings.Font.Size = 14.000000000000000000
+          Size.Width = 435.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, Style, FontColor]
+        end
+      end
+      object Layout4: TLayout
+        Padding.Left = 5.000000000000000000
+        Padding.Top = 5.000000000000000000
+        Padding.Right = 5.000000000000000000
+        Padding.Bottom = 5.000000000000000000
+        Position.X = 8.000000000000000000
+        Position.Y = 127.000000000000000000
+        Size.Width = 585.000000000000000000
+        Size.Height = 34.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        object Label4: TLabel
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 140.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = claDarkblue
+          Text = 'Nome'
+          TabOrder = 1
+        end
+        object Line5: TLine
+          Align = Client
+          HitTest = False
+          LineType = Bottom
+          Size.Width = 435.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object edtPrimeiroNome: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          StyleLookup = 'transparentedit'
+          TabOrder = 0
+          Text = 'Mark Anderson'
+          TextSettings.Font.Size = 14.000000000000000000
+          Size.Width = 435.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, Style, FontColor]
+        end
+      end
+      object Layout5: TLayout
+        Padding.Left = 5.000000000000000000
+        Padding.Top = 5.000000000000000000
+        Padding.Right = 5.000000000000000000
+        Padding.Bottom = 5.000000000000000000
+        Position.X = 8.000000000000000000
+        Position.Y = 164.000000000000000000
+        Size.Width = 585.000000000000000000
+        Size.Height = 34.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object Label5: TLabel
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 140.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = claDarkblue
+          Text = 'Sobrenome'
+          TabOrder = 1
+        end
+        object Line6: TLine
+          Align = Client
+          HitTest = False
+          LineType = Bottom
+          Size.Width = 435.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object edtSobrenome: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          StyleLookup = 'transparentedit'
+          TabOrder = 0
+          Text = 'Software Engineer'
+          TextSettings.Font.Size = 14.000000000000000000
+          Size.Width = 435.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, Style, FontColor]
+        end
+      end
+      object Layout6: TLayout
+        Padding.Left = 5.000000000000000000
+        Padding.Top = 5.000000000000000000
+        Padding.Right = 5.000000000000000000
+        Padding.Bottom = 5.000000000000000000
+        Position.X = 8.000000000000000000
+        Position.Y = 201.000000000000000000
+        Size.Width = 249.000000000000000000
+        Size.Height = 34.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object Label6: TLabel
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 140.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = claDarkblue
+          Text = 'Data Registro'
+          TabOrder = 1
+        end
+        object Line7: TLine
+          Align = Client
+          HitTest = False
+          LineType = Bottom
+          Size.Width = 99.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object edtDataRegistro: TDateEdit
+          Date = 44866.000000000000000000
+          Align = Client
+          Size.Width = 99.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+        end
+      end
+    end
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 20
+    Top = 5
+    object LinkControlToField1: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = ControllerPessoa.pbsPessoa
+      FieldName = 'IdPessoa'
+      Control = edtId
+      Track = False
+    end
+    object LinkControlToField2: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = ControllerPessoa.pbsPessoa
+      FieldName = 'FlNatureza'
+      Control = edtNatureza
+      Track = False
+    end
+    object LinkControlToField3: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = ControllerPessoa.pbsPessoa
+      FieldName = 'DsDocumento'
+      Control = edtDocumento
+      Track = False
+    end
+    object LinkControlToField4: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = ControllerPessoa.pbsPessoa
+      FieldName = 'NmPrimeiro'
+      Control = edtPrimeiroNome
+      Track = False
+    end
+    object LinkControlToField5: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = ControllerPessoa.pbsPessoa
+      FieldName = 'NmSegundo'
+      Control = edtSobrenome
+      Track = False
+    end
+    object LinkControlToField6: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = ControllerPessoa.pbsPessoa
+      FieldName = 'DtRegistro'
+      Control = edtDataRegistro
+      Track = False
+    end
+    object LinkControlToField7: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = ControllerPessoa.pbsEndereco
+      FieldName = 'DsCep'
+      Control = edtCEP
+      Track = False
+    end
+    object LinkControlToField8: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = ControllerPessoa.pbsEndereco
+      FieldName = 'NmLogradouro'
+      Control = edtLogradouro
+      Track = False
+    end
+    object LinkControlToField9: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = ControllerPessoa.pbsEndereco
+      FieldName = 'DsComplemento'
+      Control = edtComplemento
+      Track = False
+    end
+    object LinkControlToField10: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = ControllerPessoa.pbsEndereco
+      FieldName = 'NmBairro'
+      Control = edtBairro
+      Track = False
+    end
+    object LinkControlToField11: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = ControllerPessoa.pbsEndereco
+      FieldName = 'NmCidade'
+      Control = edtCidade
+      Track = False
+    end
+    object LinkControlToField12: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = ControllerPessoa.pbsEndereco
+      FieldName = 'DsUF'
+      Control = edtUF
+      Track = False
+    end
+    object LinkListControlToField1: TLinkListControlToField
+      Category = 'Quick Bindings'
+      DataSource = ControllerPessoa.pbsPessoa
+      Control = cbbNatureza
+      FillExpressions = <>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
+    end
+    object LinkPropertyToFieldItemIndex: TLinkPropertyToField
+      Category = 'Quick Bindings'
+      DataSource = ControllerPessoa.pbsPessoa
+      FieldName = 'FlNatureza'
+      Component = cbbNatureza
+      ComponentProperty = 'ItemIndex'
+    end
+  end
+end

@@ -1,0 +1,13 @@
+﻿[grdListagem]
+Coordinates=590,20,76,177
+Visible=True
+
+[lytGeral]
+Coordinates=105,10,52,33
+
+[]
+Coordinates=104,56,91,36
+
+[BindingsList1]
+Coordinates=105,62,82,33
+

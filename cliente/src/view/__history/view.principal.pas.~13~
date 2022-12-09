@@ -1,0 +1,110 @@
+unit view.principal;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
+  System.Variants,
+  FMX.Types,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.Dialogs,
+  FMX.Controls.Presentation,
+  FMX.StdCtrls,
+  FMX.Objects,
+  FMX.Layouts,
+  FMX.Effects,
+  FMX.MultiView,
+  FMX.TabControl,
+  System.Generics.Collections,
+  System.Actions,
+  FMX.ActnList;
+
+type
+  TfrmPrincipal = class(TForm)
+    lytTitulo: TLayout;
+    recTitulo: TRectangle;
+    lblTitulo: TLabel;
+    mtvMenu: TMultiView;
+    lytConteudo: TLayout;
+    recMenu: TRectangle;
+    ShadowEffect1: TShadowEffect;
+    lytMenuTopo: TLayout;
+    btnMenu: TButton;
+    Rectangle1: TRectangle;
+    Layout1: TLayout;
+    lblMenuTitulo: TLabel;
+    btnCadastrar: TButton;
+    recFiltrarCor: TRoundRect;
+    ShadowEffect4: TShadowEffect;
+    lblFiltarTitulo: TLabel;
+    recFiltarImagem: TRoundRect;
+    imgFiltarImagem: TImage;
+    btnSair: TButton;
+    RoundRect1: TRoundRect;
+    ShadowEffect2: TShadowEffect;
+    Label1: TLabel;
+    RoundRect2: TRoundRect;
+    Image1: TImage;
+    tbConteudo: TTabControl;
+    tbiLista: TTabItem;
+    tbiCadastro: TTabItem;
+    btnLista: TButton;
+    RoundRect3: TRoundRect;
+    ShadowEffect3: TShadowEffect;
+    Label2: TLabel;
+    RoundRect4: TRoundRect;
+    Image2: TImage;
+    ActionList1: TActionList;
+    actLista: TChangeTabAction;
+    actCadastro: TChangeTabAction;
+    btnFiltrar: TButton;
+    RoundRect5: TRoundRect;
+    ShadowEffect5: TShadowEffect;
+    Label3: TLabel;
+    RoundRect6: TRoundRect;
+    Image3: TImage;
+    procedure FormCreate(Sender: TObject);
+  private
+    procedure InicializaFormularios;
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPrincipal: TfrmPrincipal;
+
+implementation
+
+{$R *.fmx}
+
+uses
+  view.listagem,
+  view.cadastro, controller.pessoa;
+
+procedure TfrmPrincipal.FormCreate(Sender: TObject);
+begin
+  InicializaFormularios;
+end;
+
+procedure TfrmPrincipal.InicializaFormularios;
+begin
+  if not Assigned(frmListagem) then
+  begin
+    frmListagem := TfrmListagem.Create(Self);
+  end;
+  tbiLista.AddObject(frmListagem.lytGeral);
+
+  if not Assigned(frmCadastro) then
+  begin
+    frmCadastro := TfrmCadastro.Create(Self);
+  end;
+  tbiCadastro.AddObject(frmCadastro.lytGeral);
+end;
+
+end.

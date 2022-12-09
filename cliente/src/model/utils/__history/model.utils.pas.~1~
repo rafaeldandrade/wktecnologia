@@ -1,0 +1,31 @@
+unit model.utils;
+
+interface
+
+uses
+  System.SysUtils,
+  System.TypInfo,
+  System.Generics.Collections,
+  model.enums;
+
+type
+  TNaturezaPessoaHelper = record helper for TNaturezaPessoa
+    function ToEnum(Value: String): TNaturezaPessoa;
+    function ToString: String;
+  end;
+
+implementation
+
+{ TNaturezaPessoaHelper }
+
+function TNaturezaPessoaHelper.ToEnum(Value: String): TNaturezaPessoa;
+begin
+  Result := TNaturezaPessoa(GetEnumValue(TypeInfo(TNaturezaPessoa), UpperCase(Value)));
+end;
+
+function TNaturezaPessoaHelper.ToString: String;
+begin
+  Result := GetEnumName(TypeInfo(TNaturezaPessoa), Integer(Self));
+end;
+
+end.

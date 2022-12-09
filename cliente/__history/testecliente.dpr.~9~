@@ -1,0 +1,20 @@
+program testecliente;
+
+uses
+  System.StartUpCopy,
+  FMX.Forms,
+  testecliente.view.principal in 'src\view\testecliente.view.principal.pas' {frmPrincipal},
+  testecliente.model.entity.pessoa in 'src\model\entity\testecliente.model.entity.pessoa.pas',
+  testecliente.model.entity.endereco in 'src\model\entity\testecliente.model.entity.endereco.pas',
+  testecliente.controller.pessoa in 'src\controller\testecliente.controller.pessoa.pas' {ControllerPessoa: TDataModule},
+  testecliente.view.listagem in 'src\view\testecliente.view.listagem.pas' {frmListagem};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TControllerPessoa, ControllerPessoa);
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmListagem, frmListagem);
+  Application.Run;
+end.

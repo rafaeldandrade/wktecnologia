@@ -1,0 +1,38 @@
+unit testecliente.model.entity.pessoa;
+
+interface
+
+uses testecliente.model.entity.endereco;
+
+type
+  TPessoa = class
+  private
+    FIdPessoa: Int64;
+    FFlNatureza: SmallInt;
+    FDsDocumento: String;
+    FNmPrimeiro: String;
+    FNmSegundo: String;
+    FDtRegistro: String;
+    FEndereco: TEndereco;
+  public
+    property IdPessoa: Int64 read FIdPessoa write FIdPessoa;
+    property FlNatureza: SmallInt read FFlNatureza write FFlNatureza;
+    property DsDocumento: String read FDsDocumento write FDsDocumento;
+    property NmPrimeiro: String read FNmPrimeiro write FNmPrimeiro;
+    property NmSegundo: String read FNmSegundo write FNmSegundo;
+    property DtRegistro: String read FDtRegistro write FDtRegistro;
+    property Endereco: TEndereco read FEndereco write FEndereco;
+
+    class function New: TPessoa;
+  end;
+
+implementation
+
+{ TPessoa }
+
+class function TPessoa.New: TPessoa;
+begin
+  Result := Self.Create;
+end;
+
+end.

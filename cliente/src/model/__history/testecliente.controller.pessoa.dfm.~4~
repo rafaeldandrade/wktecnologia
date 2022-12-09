@@ -1,0 +1,45 @@
+object ControllerPessoa: TControllerPessoa
+  Height = 480
+  Width = 640
+  object pbsPessoa: TPrototypeBindSource
+    AutoActivate = True
+    AutoPost = False
+    FieldDefs = <
+      item
+        Name = 'IdPessoa'
+        FieldType = ftUInteger
+        Generator = 'UIntegers'
+        ReadOnly = False
+      end
+      item
+        Name = 'FlNatureza'
+        FieldType = ftInteger
+        Generator = 'Integers'
+        ReadOnly = False
+      end
+      item
+        Name = 'DsDocumento'
+        Generator = 'ColorsNames'
+        ReadOnly = False
+      end
+      item
+        Name = 'NmPrimeiro'
+        Generator = 'ContactNames'
+        ReadOnly = False
+      end
+      item
+        Name = 'NmSegundo'
+        Generator = 'ContactTitles'
+        ReadOnly = False
+      end
+      item
+        Name = 'DtRegistro'
+        FieldType = ftDate
+        Generator = 'Date'
+        ReadOnly = False
+      end>
+    ScopeMappings = <>
+    Left = 184
+    Top = 120
+  end
+end

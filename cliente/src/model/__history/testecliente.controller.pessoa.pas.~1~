@@ -1,0 +1,25 @@
+unit testecliente.controller.pessoa;
+
+interface
+
+uses
+  System.SysUtils, System.Classes;
+
+type
+  TControllerPessoa = class(TDataModule)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  ControllerPessoa: TControllerPessoa;
+
+implementation
+
+{%CLASSGROUP 'FMX.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

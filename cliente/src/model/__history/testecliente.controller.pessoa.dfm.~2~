@@ -1,0 +1,12 @@
+object ControllerPessoa: TControllerPessoa
+  Height = 480
+  Width = 640
+  object pbsPessoa: TPrototypeBindSource
+    AutoActivate = True
+    AutoPost = False
+    FieldDefs = <>
+    ScopeMappings = <>
+    Left = 184
+    Top = 120
+  end
+end
