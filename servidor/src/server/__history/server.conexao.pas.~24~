@@ -1,0 +1,188 @@
+unit server.conexao;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  System.Generics.Collections,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.FMXUI.Wait,
+  Data.DB,
+  FireDAC.Comp.Client,
+  FireDAC.Phys.PGDef,
+  FireDAC.Comp.UI,
+  FireDAC.Phys.PG,
+  FireDAC.DApt,
+  model.entity.endereco,
+  model.entity.pessoa,
+  model.enums,
+  model.utils;
+
+type
+  TdmConexao = class(TDataModule)
+    FDPhysPgDriverLink1: TFDPhysPgDriverLink;
+    FDGUIxWaitCursor1: TFDGUIxWaitCursor;
+    FDConn: TFDConnection;
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    function GetPessoas: TObjectList<TPessoa>;
+    function UpdatePessoa(Value: TPessoa): TPessoa;
+    function InsertPessoa(Value: TPessoa): TPessoa;
+    function DeletePessoa(Value: Integer): Boolean;
+  end;
+
+var
+  dmConexao: TdmConexao;
+
+implementation
+
+{%CLASSGROUP 'FMX.Controls.TControl'}
+
+{$R *.dfm}
+
+procedure TdmConexao.DataModuleCreate(Sender: TObject);
+begin
+  FDConn.Open;
+end;
+
+procedure TdmConexao.DataModuleDestroy(Sender: TObject);
+begin
+  FDConn.Close;
+end;
+
+function TdmConexao.DeletePessoa(Value: Integer): Boolean;
+const
+  vDeletePessoa = 'DELETE FROM public.pessoa ' +
+                  'WHERE idpessoa=:idpessoa; ';
+begin
+  Result := False;
+  FDConn.StartTransaction;
+  try
+    FDConn.ExecSQL(vDeletePessoa,
+                   [Value],
+                   [ftLargeint]);
+
+    FDConn.Commit;
+    Result := True;
+  except
+    FDConn.Rollback;
+  end;
+
+end;
+
+function TdmConexao.GetPessoas: TObjectList<TPessoa>;
+var
+  vQry: TFDQuery;
+  vPessoa: TPessoa;
+begin
+  Result := TObjectList<TPessoa>.Create;
+
+  vQry := TFDQuery.Create(nil);
+  try
+    vQry.Connection := FDConn;
+    vQry.SQL.Clear;
+    vQry.SQL.Add('SELECT p.*, e.*, i.* FROM PESSOA P  ');
+    vQry.SQL.Add('join endereco e on e.idpessoa = p.idpessoa  ');
+    vQry.SQL.Add('LEFT join endereco_integracao i on i.idendereco = e.idendereco  ');
+    vQry.Open;
+
+    while not vQry.Eof do
+    begin
+      vPessoa := TPessoa.New;
+
+      vPessoa.IdPessoa := vQry.FieldByName('p.idpessoa').AsLargeInt;
+      vPessoa.FlNatureza := TNaturezaPessoa(vQry.FieldByName('p.flnatureza').AsInteger);
+      vPessoa.DsDocumento := vQry.FieldByName('p.dsdocumento').AsString;
+      vPessoa.NmPrimeiro := vQry.FieldByName('p.nmprimeiro').AsString;
+      vPessoa.NmSegundo := vQry.FieldByName('p.nmsegundo').AsString;
+      vPessoa.DtRegistro := vQry.FieldByName('p.dtregistro').AsDateTime;
+      vPessoa.endereco.IdEndereco := vQry.FieldByName('e.idendereco').AsLargeInt;
+      vPessoa.endereco.DsCep := vQry.FieldByName('e.dscep').AsString;
+      vPessoa.endereco.DsUF := vQry.FieldByName('i.dsuf').AsString;
+      vPessoa.endereco.NmCidade := vQry.FieldByName('i.nmcidade').AsString;
+      vPessoa.endereco.NmBairro := vQry.FieldByName('i.nmbairro').AsString;
+      vPessoa.endereco.NmLogradouro := vQry.FieldByName('i.nmlogradouro').AsString;
+      vPessoa.endereco.DsComplemento := vQry.FieldByName('i.dscomplemento').AsString;
+
+      Result.Add(vPessoa);
+
+      vQry.Next;
+    end;
+
+  finally
+    vQry.Free;
+  end;
+
+end;
+
+function TdmConexao.InsertPessoa(Value: TPessoa): TPessoa;
+const
+  vInsertPessoa = 'with rows as ( ' +
+                  'INSERT INTO public.pessoa ' +
+                  '(flnatureza, dsdocumento, nmprimeiro, nmsegundo, dtregistro) ' +
+                  'VALUES(:flnatureza, :dsdocumento, :nmprimeiro, :nmsegundo, :dtregistro) RETURNING idpessoa ' +
+                  ') ' +
+                  'INSERT INTO public.endereco ' +
+                  '(idpessoa, dscep) ' +
+                  'VALUES((SELECT idpessoa FROM ROWS), :dscep) RETURNING idpessoa ; ';
+var
+  vIdPessoa: Int64;
+begin
+  FDConn.StartTransaction;
+  try
+    vIdPessoa := FDConn.ExecSQLScalar(vInsertPessoa,
+                   [Value.FlNatureza, Value.DsDocumento, Value.NmPrimeiro, Value.NmSegundo, Value.DtRegistro, Value.endereco.DsCep],
+                   [ftSmallint, ftString, ftString, ftString, ftDate, ftString]);
+
+    FDConn.Commit;
+    Value.IdPessoa := vIdPessoa;
+  except
+    FDConn.Rollback;
+  end;
+
+  //Atualiza CEP/Endereço
+
+  Result := Value;
+end;
+
+function TdmConexao.UpdatePessoa(Value: TPessoa): TPessoa;
+const
+  vUpdatePessoa = 'UPDATE public.pessoa ' +
+                  'SET flnatureza=:flnatureza, dsdocumento=:dsdocumento, nmprimeiro=:nmprimeiro, nmsegundo=:nmsegundo, dtregistro=:dtregistro ' +
+                  'WHERE idpessoa=:idpessoa; ';
+  vUpdateEndereco = 'UPDATE public.endereco ' +
+                    'SET dscep=:dscep ' +
+                    'WHERE idendereco=:idendereco; ';
+begin
+  FDConn.StartTransaction;
+  try
+    FDConn.ExecSQL(vUpdatePessoa,
+                   [Value.FlNatureza, Value.DsDocumento, Value.NmPrimeiro, Value.NmSegundo, Value.DtRegistro, Value.IdPessoa],
+                   [ftSmallint, ftString, ftString, ftString, ftDate, ftLargeint]);
+
+    FDConn.ExecSQL(vUpdateEndereco,
+                   [Value.endereco.DsCep, Value.endereco.IdEndereco],
+                   [ftString, ftLargeint]);
+    FDConn.Commit;
+  except
+    FDConn.Rollback;
+  end;
+
+  //Atualiza CEP/Endereço
+
+  Result := Value;
+end;
+
+end.

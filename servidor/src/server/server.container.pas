@@ -54,7 +54,7 @@ end;
 procedure TServerContainer1.DSServerClass1GetClass(
   DSServerClass: TDSServerClass; var PersistentClass: TPersistentClass);
 begin
-  PersistentClass := server.methods.pessoa.TServerMethods1;
+  PersistentClass := server.methods.pessoa.TCadastro;
 end;
 
 initialization

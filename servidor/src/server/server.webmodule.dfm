@@ -11,6 +11,7 @@ object WebModule1: TWebModule1
   Width = 414
   object DSRESTWebDispatcher1: TDSRESTWebDispatcher
     OnFormatResult = DSRESTWebDispatcher1FormatResult
+    OnNameMap = DSRESTWebDispatcher1NameMap
     WebDispatch.PathInfo = 'datasnap*'
     Left = 96
     Top = 75

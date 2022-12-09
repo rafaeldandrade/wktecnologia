@@ -1,0 +1,66 @@
+unit server.methods.pessoa;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  Datasnap.DSServer,
+  Datasnap.DSAuth,
+  System.TypInfo,
+  System.Generics.Collections,
+  REST.JSON,
+  System.JSON;
+
+type
+{$METHODINFO ON}
+  TServerMethods1 = class(TComponent)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    function EchoString(Value: string): string;
+    function ReverseString(Value: string): string;
+    function Pessoas: TJSONArray;
+    function uptatePessoas(Value: TJSONObject): TJSONObject;
+  end;
+
+{$METHODINFO OFF}
+
+implementation
+
+uses
+  System.StrUtils,
+  model.enums,
+  model.utils,
+  model.entity.pessoa,
+  server.conexao;
+
+function TServerMethods1.EchoString(Value: string): string;
+begin
+  Result := Value;
+end;
+
+function TServerMethods1.Pessoas: TJSONArray;
+var
+  vListaPessoas: TObjectList<TPessoa>;
+begin
+  vListaPessoas := dmConexao.GetPessoas;
+  try
+    Result := TUtils.ObjectListToJSON<TPessoa>(vListaPessoas);
+  finally
+    vListaPessoas.Free;
+  end;
+end;
+
+function TServerMethods1.ReverseString(Value: string): string;
+begin
+  Result := System.StrUtils.ReverseString(Value);
+end;
+
+function TServerMethods1.uptatePessoas(Value: TJSONObject): TJSONObject;
+begin
+
+end;
+
+end.
