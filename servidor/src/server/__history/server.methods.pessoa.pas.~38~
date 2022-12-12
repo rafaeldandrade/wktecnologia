@@ -1,0 +1,102 @@
+unit server.methods.pessoa;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  Datasnap.DSServer,
+  Datasnap.DSAuth,
+  System.TypInfo,
+  System.Generics.Collections,
+  REST.JSON,
+  System.JSON, dao.pessoas, model.interfaces, model.entity.pessoa;
+
+type
+{$METHODINFO ON}
+  TCadastro = class(TComponent)
+  private
+    FDaoPessoa: iDAO<TPessoa>;
+  public
+    { Public declarations }
+    function Pessoas: TJSONArray;
+    function updatePessoas(Value: TJSONObject): TJSONObject;
+    function acceptPessoas(Value: TJSONObject): TJSONObject;
+    function deletePessoas(Value: Integer): Boolean;
+    function acceptPessoasLote(Value: TJSONArray): Boolean;
+  end;
+
+{$METHODINFO OFF}
+
+implementation
+
+uses
+  System.StrUtils,
+  model.enums,
+  model.utils,
+  server.dao, model.conexao;
+
+function TCadastro.acceptPessoas(Value: TJSONObject): TJSONObject;
+var
+  vPessoa: TPessoa;
+  vPessoaResult: TPessoa;
+begin
+  vPessoa := TUtils.JSONToObject<TPessoa>(Value.ToString);
+  FDAOPessoa := TDAOPessoa<TPessoa>.Create;
+  try
+    vPessoaResult := FDAOPessoa.Insert(vPessoa);
+    Result := TUtils.ObjectToJSON<TPessoa>(vPessoaResult);
+  finally
+    vPessoa.Free;
+  end;
+end;
+
+function TCadastro.deletePessoas(Value: Integer): Boolean;
+begin
+  FDAOPessoa := TDAOPessoa<TPessoa>.Create;
+  Result := FDAOPessoa.Delete(Value);
+end;
+
+function TCadastro.Pessoas: TJSONArray;
+var
+  vListaPessoas: TObjectList<TPessoa>;
+begin
+  vListaPessoas := TObjectList<TPessoa>.Create;
+
+  FDAOPessoa := TDAOPessoa<TPessoa>.Create;
+  FDAOPessoa.Get(vListaPessoas);
+  try
+    Result := TUtils.ObjectListToJSON<TPessoa>(vListaPessoas);
+  finally
+    vListaPessoas.Free;
+  end;
+end;
+
+function TCadastro.updatePessoas(Value: TJSONObject): TJSONObject;
+var
+  vPessoa: TPessoa;
+  vPessoaResult: TPessoa;
+begin
+  FDAOPessoa := TDAOPessoa<TPessoa>.Create;
+  vPessoa := TUtils.JSONToObject<TPessoa>(Value.ToString);
+  try
+    vPessoaResult := FDAOPessoa.Update(vPessoa);
+    Result := TUtils.ObjectToJSON<TPessoa>(vPessoaResult);
+  finally
+    vPessoa.Free;
+  end;
+end;
+
+function TCadastro.acceptPessoasLote(Value: TJSONArray): Boolean;
+var
+  vListaPessoas: TObjectList<TPessoa>;
+begin
+  vListaPessoas := TUtils.JsonToObjectList<TPessoa>(Value.ToString);
+  try
+    Result := TServerDAO.New.InsertPessoasLote(vListaPessoas);
+  finally
+    vListaPessoas.Free;
+  end;
+end;
+
+end.

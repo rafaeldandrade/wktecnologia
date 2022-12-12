@@ -1,0 +1,320 @@
+unit server.dao;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  System.Threading,
+  System.Generics.Collections,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Stan.Param,
+  FireDAC.UI.Intf,
+  FireDAC.Phys,
+  FireDAC.Phys.Intf,
+  FireDAC.Phys.PGDef,
+  FireDAC.Phys.PG,
+  FireDAC.Comp.UI,
+  FireDAC.Comp.Client,
+  FireDAC.FMXUI.Wait,
+  FireDAC.DApt,
+  Data.DB,
+  model.entity.endereco,
+  model.entity.pessoa,
+  model.enums,
+  model.utils;
+
+type
+  TServerDAO = class(TDataModule)
+    FDPhysPgDriverLink1: TFDPhysPgDriverLink;
+    FDGUIxWaitCursor1: TFDGUIxWaitCursor;
+  private
+    procedure GravarEndereco(aId: Int64; aCEP: String);
+  public
+    function GetPessoas: TObjectList<TPessoa>;
+    function UpdatePessoa(Value: TPessoa): TPessoa;
+    function InsertPessoa(Value: TPessoa): TPessoa;
+    function DeletePessoa(Value: Integer): Boolean;
+    function InsertPessoasLote(Value: TObjectList<TPessoa>): Boolean;
+    procedure AtualizarEnderecos;
+  end;
+
+var
+  ServerDAO: TServerDAO;
+
+implementation
+
+{%CLASSGROUP 'FMX.Controls.TControl'}
+
+uses
+  model.cep,
+  controller.viacep,
+  model.conexao,
+  model.interfaces;
+
+{$R *.dfm}
+
+procedure TServerDAO.AtualizarEnderecos;
+var
+  vQry: TFDQuery;
+begin
+  vQry := TFDQuery.Create(nil);
+  try
+    vQry.Connection := TConexao.New('PRINCIPAL').conexao;
+    vQry.SQL.Clear;
+    vQry.SQL.Add('SELECT * ');
+    vQry.SQL.Add('FROM endereco e ');
+    vQry.SQL.Add
+      ('LEFT join endereco_integracao i on i.idendereco = e.idendereco ');
+    vQry.SQL.Add('WHERE i.idendereco IS NULL ');
+    vQry.Open;
+
+    while not vQry.Eof do
+    begin
+      System.Classes.TThread.CreateAnonymousThread(
+          procedure
+        begin
+          GravarEndereco(vQry.FieldByName('idendereco').AsLargeInt,
+            vQry.FieldByName('dscep').AsString);
+        end).Start;
+      vQry.Next;
+    end;
+
+  finally
+    vQry.Free;
+  end;
+end;
+
+function TServerDAO.DeletePessoa(Value: Integer): Boolean;
+const
+  vDeletePessoa = 'DELETE FROM public.pessoa ' + 'WHERE idpessoa=:idpessoa; ';
+var
+  vConexao: iConexao;
+begin
+  Result := False;
+  vConexao := TConexao.New('PRINCIPAL');
+  vConexao.conexao.StartTransaction;
+  try
+    vConexao.conexao.ExecSQL(vDeletePessoa, [Value],
+      [ftLargeint]);
+
+    vConexao.conexao.Commit;
+    Result := True;
+  except
+    vConexao.conexao.Rollback;
+  end;
+
+end;
+
+function TServerDAO.GetPessoas: TObjectList<TPessoa>;
+var
+  vQry: TFDQuery;
+  vPessoa: TPessoa;
+begin
+  Result := TObjectList<TPessoa>.Create;
+
+  vQry := TFDQuery.Create(nil);
+  try
+    vQry.Connection := TConexao.New('PRINCIPAL').conexao;
+    vQry.SQL.Clear;
+    vQry.SQL.Add
+      ('SELECT p.idpessoa, p.flnatureza, p.dsdocumento, p.nmprimeiro, p.nmsegundo, p.dtregistro, ');
+    vQry.SQL.Add
+      ('e.idendereco, e.dscep, i.dsuf, i.nmcidade, i.nmbairro, i.nmlogradouro, i.dscomplemento ');
+    vQry.SQL.Add('FROM PESSOA P  ');
+    vQry.SQL.Add('join endereco e on e.idpessoa = p.idpessoa  ');
+    vQry.SQL.Add
+      ('LEFT join endereco_integracao i on i.idendereco = e.idendereco  ');
+    vQry.Open;
+
+    while not vQry.Eof do
+    begin
+      vPessoa := TPessoa.New;
+
+      vPessoa.IdPessoa := vQry.FieldByName('idpessoa').AsLargeInt;
+      vPessoa.FlNatureza := TNaturezaPessoa(vQry.FieldByName('flnatureza')
+        .AsInteger);
+      vPessoa.DsDocumento := vQry.FieldByName('dsdocumento').AsString;
+      vPessoa.NmPrimeiro := vQry.FieldByName('nmprimeiro').AsString;
+      vPessoa.NmSegundo := vQry.FieldByName('nmsegundo').AsString;
+      vPessoa.DtRegistro := vQry.FieldByName('dtregistro').AsDateTime;
+      vPessoa.endereco.IdEndereco := vQry.FieldByName('idendereco').AsLargeInt;
+      vPessoa.endereco.DsCep := vQry.FieldByName('dscep').AsString;
+      vPessoa.endereco.DsUF := vQry.FieldByName('dsuf').AsString;
+      vPessoa.endereco.NmCidade := vQry.FieldByName('nmcidade').AsString;
+      vPessoa.endereco.NmBairro := vQry.FieldByName('nmbairro').AsString;
+      vPessoa.endereco.NmLogradouro := vQry.FieldByName('nmlogradouro')
+        .AsString;
+      vPessoa.endereco.DsComplemento :=
+        vQry.FieldByName('dscomplemento').AsString;
+
+      Result.Add(vPessoa);
+
+      vQry.Next;
+    end;
+
+  finally
+    vQry.Free;
+  end;
+
+end;
+
+procedure TServerDAO.GravarEndereco(aId: Int64; aCEP: String);
+const
+  vInsertEndereco = 'INSERT INTO public.endereco_integracao ' +
+    '(idendereco, dsuf, nmcidade, nmbairro, nmlogradouro, dscomplemento) ' +
+    'VALUES(:idendereco, :dsuf, :nmcidade, :nmbairro, :nmlogradouro, :dscomplemento); ';
+var
+  vObjetoCEP: TCEP;
+  vConexao: iConexao;
+begin
+  if aCEP.Trim.Replace('-', '').Length = 8 then
+  begin
+    vObjetoCEP := controllerViacep.BuscarCep(aCEP);
+    if Assigned(vObjetoCEP) then
+    begin
+      try
+        vConexao := TConexao.New('PRINCIPAL');
+        vConexao.conexao.StartTransaction;
+        try
+          vConexao.conexao.ExecSQL(vInsertEndereco,
+            [aId, vObjetoCEP.uf, vObjetoCEP.localidade, vObjetoCEP.bairro,
+            vObjetoCEP.logradouro, vObjetoCEP.complemento],
+            [ftLargeint, ftString, ftString, ftString, ftString, ftString]);
+
+          vConexao.conexao.Commit;
+        except
+          vConexao.conexao.Rollback;
+        end;
+      finally
+        vObjetoCEP.Free;
+      end;
+    end;
+  end;
+end;
+
+function TServerDAO.InsertPessoa(Value: TPessoa): TPessoa;
+const
+  vInsertPessoa = 'with rows as ( ' + 'INSERT INTO public.pessoa ' +
+    '(flnatureza, dsdocumento, nmprimeiro, nmsegundo, dtregistro) ' +
+    'VALUES(:flnatureza, :dsdocumento, :nmprimeiro, :nmsegundo, :dtregistro) RETURNING idpessoa '
+    + ') ' + 'INSERT INTO public.endereco ' + '(idpessoa, dscep) ' +
+    'VALUES((SELECT idpessoa FROM ROWS), :dscep) RETURNING idpessoa ; ';
+var
+  vIdPessoa: Int64;
+  vConexao: iConexao;
+begin
+  vConexao := TConexao.New('PRINCIPAL');
+  vConexao.conexao.StartTransaction;
+  try
+    vIdPessoa := vConexao.conexao.ExecSQLScalar(vInsertPessoa,
+      [Value.FlNatureza, Value.DsDocumento, Value.NmPrimeiro, Value.NmSegundo,
+      Value.DtRegistro, Value.endereco.DsCep],
+      [ftSmallint, ftString, ftString, ftString, ftDate, ftString]);
+    vConexao.conexao.Commit;
+    Value.IdPessoa := vIdPessoa;
+  except
+    vConexao.conexao.Rollback;
+  end;
+
+  AtualizarEnderecos;
+
+  Result := Value;
+end;
+
+function TServerDAO.InsertPessoasLote(Value: TObjectList<TPessoa>): Boolean;
+const
+  vInsertPessoa = 'with rows as ( ' + 'INSERT INTO public.pessoa ' +
+    '(flnatureza, dsdocumento, nmprimeiro, nmsegundo, dtregistro) ' +
+    'VALUES(:flnatureza, :dsdocumento, :nmprimeiro, :nmsegundo, :dtregistro) RETURNING idpessoa '
+    + ') ' + 'INSERT INTO public.endereco ' + '(idpessoa, dscep) ' +
+    'VALUES((SELECT idpessoa FROM ROWS), :dscep) RETURNING idpessoa ; ';
+var
+  vQry: TFDQuery;
+  vPessoa: TPessoa;
+  I: Integer;
+  vConexao: iConexao;
+begin
+  Result := False;
+
+  vQry := TFDQuery.Create(nil);
+  try
+    vConexao := TConexao.New('PRINCIPAL');
+    vQry.Connection := vConexao.conexao;
+    vQry.SQL.Clear;
+    vQry.SQL.Text := vInsertPessoa;
+
+    vQry.Params[0].DataType := ftSmallint;
+    vQry.Params[1].DataType := ftString;
+    vQry.Params[1].Size := 20;
+    vQry.Params[2].DataType := ftString;
+    vQry.Params[2].Size := 100;
+    vQry.Params[3].DataType := ftString;
+    vQry.Params[3].Size := 100;
+    vQry.Params[4].DataType := ftDate;
+    vQry.Params[5].DataType := ftString;
+    vQry.Params[5].Size := 15;
+    vQry.Params.ArraySize := Value.Count;
+
+    for I := 0 to Value.Count - 1 do
+    begin
+      vQry.Params[0].AsSmallInts[I] := Ord(Value[I].FlNatureza);
+      vQry.Params[1].AsStrings[I] := Value[I].DsDocumento;
+      vQry.Params[2].AsStrings[I] := Value[I].NmPrimeiro;
+      vQry.Params[3].AsStrings[I] := Value[I].NmSegundo;
+      vQry.Params[4].AsDates[I] := Value[I].DtRegistro;
+      vQry.Params[5].AsStrings[I] := Value[I].endereco.DsCep;
+    end;
+
+    vConexao.conexao.StartTransaction;
+    try
+      vQry.Execute(Value.Count, 0);
+      vConexao.conexao.Commit;
+      Result := True;
+    except
+      vConexao.conexao.Rollback;
+    end;
+
+  finally
+    vQry.Free;
+  end;
+
+end;
+
+function TServerDAO.UpdatePessoa(Value: TPessoa): TPessoa;
+const
+  vUpdatePessoa = 'UPDATE public.pessoa ' +
+    'SET flnatureza=:flnatureza, dsdocumento=:dsdocumento, nmprimeiro=:nmprimeiro, nmsegundo=:nmsegundo, dtregistro=:dtregistro '
+    + 'WHERE idpessoa=:idpessoa; ';
+  vUpdateEndereco = 'UPDATE public.endereco ' + 'SET dscep=:dscep ' +
+    'WHERE idendereco=:idendereco; ';
+var
+  vConexao: iConexao;
+begin
+  vConexao := TConexao.New('PRINCIPAL');
+  vConexao.conexao.StartTransaction;
+  try
+    vConexao.conexao.ExecSQL(vUpdatePessoa,
+      [Value.FlNatureza, Value.DsDocumento, Value.NmPrimeiro, Value.NmSegundo,
+      Value.DtRegistro, Value.IdPessoa],
+      [ftSmallint, ftString, ftString, ftString, ftDate, ftLargeint]);
+
+    vConexao.conexao.ExecSQL(vUpdateEndereco,
+      [Value.endereco.DsCep, Value.endereco.IdEndereco],
+      [ftString, ftLargeint]);
+    vConexao.conexao.Commit;
+  except
+    vConexao.conexao.Rollback;
+  end;
+
+  AtualizarEnderecos;
+
+  Result := Value;
+end;
+
+end.

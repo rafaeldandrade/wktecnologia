@@ -12,19 +12,23 @@ uses
   server.webmodule in 'src\server\server.webmodule.pas' {WebModule1: TWebModule},
   model.utils in '..\cliente\src\model\utils\model.utils.pas',
   model.enums in '..\cliente\src\model\model.enums.pas',
-  server.conexao in 'src\server\server.conexao.pas' {dmConexao: TDataModule},
   model.entity.endereco in '..\cliente\src\model\entity\model.entity.endereco.pas',
   model.entity.pessoa in '..\cliente\src\model\entity\model.entity.pessoa.pas',
   model.cep in 'src\model\model.cep.pas',
-  controller.viacep in 'src\controller\controller.viacep.pas' {controllerViacep: TDataModule};
+  controller.viacep in 'src\controller\controller.viacep.pas' {controllerViacep: TDataModule},
+  model.interfaces in 'src\model\model.interfaces.pas',
+  model.conexao in 'src\model\model.conexao.pas',
+  dao.pessoas in 'src\dao\dao.pessoas.pas',
+  dao.enderecos in 'src\dao\dao.enderecos.pas';
 
 {$R *.res}
 
 begin
+  ReportMemoryLeaksOnShutdown := True;
   if WebRequestHandler <> nil then
     WebRequestHandler.WebModuleClass := WebModuleClass;
   Application.Initialize;
-  Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TcontrollerViacep, controllerViacep);
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.Run;
 end.

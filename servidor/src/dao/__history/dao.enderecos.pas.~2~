@@ -1,0 +1,88 @@
+unit dao.enderecos;
+
+interface
+
+uses
+  System.SysUtils;
+
+type
+  TEnderecosDAO = class
+  public
+    class function AtualizarVazios: Boolean;
+  end;
+
+implementation
+
+uses
+  model.cep,
+  model.interfaces,
+  controller.viacep,
+  model.conexao,
+  FireDAC.Comp.Client,
+  Data.DB;
+
+{ TEnderecosDAO }
+
+class function TEnderecosDAO.AtualizarVazios: Boolean;
+const
+  vUpdateEnderecos = 'UPDATE endereco_integracao i ' +
+    'SET dsuf = :dsuf, nmcidade = :nmcidade, nmbairro = :nmbairro, nmlogradouro = :nmlogradouro, dscomplemento = :dscomplemento '
+    + 'WHERE idendereco in ( ' + 'select e.idendereco  ' + 'from  ' +
+    '  ENDERECO e ' +
+    '  join endereco_integracao i on i.idendereco = e.idendereco ' +
+    'where i.DSUF is null and e.DSCEP = :dscep ' + ') ';
+  vSelectEnderecos = 'select DISTINCT e.dscep  ' + 'from  ' + '  ENDERECO e ' +
+    '  join endereco_integracao i on i.idendereco = e.idendereco ' +
+    'where i.DSUF is null ';
+var
+  vObjetoCEP: TCEP;
+  vConexao: iConexao;
+  vQry: TFDQuery;
+  vCEP: String;
+begin
+  vConexao := TConexao.New('PRINCIPAL');
+  vQry := TFDQuery.Create(nil);
+  vQry.Connection := vConexao.conexao;
+  try
+    vQry.SQL.Clear;
+    vQry.SQL.Add(vSelectEnderecos);
+    vQry.Open;
+
+    vQry.First;
+    while not vQry.Eof do
+    begin
+      vCEP := vQry.FieldByName('dscep').AsString;
+
+      if vCEP.Trim.Replace('-', '').Length = 8 then
+      begin
+        vObjetoCEP := controllerViacep.BuscarCep(vCEP);
+        if Assigned(vObjetoCEP) then
+        begin
+          try
+            vConexao.conexao.StartTransaction;
+            try
+              vConexao.conexao.ExecSQL(vUpdateEnderecos,
+                [vObjetoCEP.uf, vObjetoCEP.localidade, vObjetoCEP.bairro,
+                  vObjetoCEP.logradouro, vObjetoCEP.complemento,
+                  vObjetoCEP.cep],
+                [ftLargeint, ftString, ftString, ftString, ftString, ftString]);
+
+              vConexao.conexao.Commit;
+            except
+              vConexao.conexao.Rollback;
+            end;
+          finally
+            vObjetoCEP.Free;
+          end;
+        end;
+      end;
+
+      vQry.Next;
+    end;
+  finally
+    vQry.Free;
+  end;
+
+end;
+
+end.

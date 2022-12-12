@@ -10,19 +10,22 @@ uses
   System.TypInfo,
   System.Generics.Collections,
   REST.JSON,
-  System.JSON;
+  System.JSON,
+  dao.pessoas,
+  model.interfaces,
+  model.entity.pessoa;
 
 type
 {$METHODINFO ON}
   TCadastro = class(TComponent)
   private
-    { Private declarations }
+    FDaoPessoa: iDAO<TPessoa>;
   public
     { Public declarations }
-    function Pessoas: TJSONArray;
+    function pessoas: TJSONArray;
     function updatePessoas(Value: TJSONObject): TJSONObject;
     function acceptPessoas(Value: TJSONObject): TJSONObject;
-    function deletePessoas(Value: Integer): Boolean;
+    function cancelPessoas(Value: Int64): Boolean;
     function acceptPessoasLote(Value: TJSONArray): Boolean;
   end;
 
@@ -34,46 +37,40 @@ uses
   System.StrUtils,
   model.enums,
   model.utils,
-  model.entity.pessoa,
-  server.conexao;
+  model.conexao;
 
 function TCadastro.acceptPessoas(Value: TJSONObject): TJSONObject;
 var
   vPessoa: TPessoa;
   vPessoaResult: TPessoa;
 begin
-  dmConexao := TdmConexao.Create(nil);
+  vPessoa := TUtils.JSONToObject<TPessoa>(Value.ToString);
+  FDaoPessoa := TDAOPessoa<TPessoa>.Create;
   try
-    vPessoa := TUtils.JSONToObject<TPessoa>(Value.ToString);
-    vPessoaResult := dmConexao.InsertPessoa(vPessoa);
+    vPessoaResult := FDaoPessoa.Insert(vPessoa);
     Result := TUtils.ObjectToJSON<TPessoa>(vPessoaResult);
   finally
     vPessoa.Free;
-    dmConexao.Free;
   end;
-
 end;
 
-function TCadastro.deletePessoas(Value: Integer): Boolean;
+function TCadastro.cancelPessoas(Value: Int64): Boolean;
 begin
-  dmConexao := TdmConexao.Create(nil);
-  try
-    Result := dmConexao.DeletePessoa(Value);
-  finally
-    dmConexao.Free;
-  end;
+  FDaoPessoa := TDAOPessoa<TPessoa>.Create;
+  Result := FDaoPessoa.Delete(Value);
 end;
 
-function TCadastro.Pessoas: TJSONArray;
+function TCadastro.pessoas: TJSONArray;
 var
   vListaPessoas: TObjectList<TPessoa>;
 begin
-  dmConexao := TdmConexao.Create(nil);
+  vListaPessoas := TObjectList<TPessoa>.Create;
+
+  FDaoPessoa := TDAOPessoa<TPessoa>.Create;
+  FDaoPessoa.Get(vListaPessoas);
   try
-    vListaPessoas := dmConexao.GetPessoas;
     Result := TUtils.ObjectListToJSON<TPessoa>(vListaPessoas);
   finally
-    dmConexao.Free;
     vListaPessoas.Free;
   end;
 end;
@@ -83,14 +80,13 @@ var
   vPessoa: TPessoa;
   vPessoaResult: TPessoa;
 begin
-  dmConexao := TdmConexao.Create(nil);
+  FDaoPessoa := TDAOPessoa<TPessoa>.Create;
+  vPessoa := TUtils.JSONToObject<TPessoa>(Value.ToString);
   try
-    vPessoa := TUtils.JSONToObject<TPessoa>(Value.ToString);
-    vPessoaResult := dmConexao.UpdatePessoa(vPessoa);
+    vPessoaResult := FDaoPessoa.Update(vPessoa);
     Result := TUtils.ObjectToJSON<TPessoa>(vPessoaResult);
   finally
     vPessoa.Free;
-    dmConexao.Free;
   end;
 end;
 
@@ -98,14 +94,12 @@ function TCadastro.acceptPessoasLote(Value: TJSONArray): Boolean;
 var
   vListaPessoas: TObjectList<TPessoa>;
 begin
-
-  dmConexao := TdmConexao.Create(nil);
+  FDaoPessoa := TDAOPessoa<TPessoa>.Create;
+  vListaPessoas := TUtils.JsonToObjectList<TPessoa>(Value.ToString);
   try
-    vListaPessoas := TUtils.JsonToObjectList<TPessoa>(Value.ToString);
-    Result := dmConexao.InsertPessoasLote(vListaPessoas);
+    Result := FDaoPessoa.InsertLote(vListaPessoas);
   finally
     vListaPessoas.Free;
-    dmConexao.Free;
   end;
 end;
 

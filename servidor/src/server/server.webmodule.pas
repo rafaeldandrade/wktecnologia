@@ -99,7 +99,7 @@ begin
     end else
     if RequestType.Equals('DELETE') then
     begin
-      DSMethodName := 'TCadastro.delete' + MethodName;
+      DSMethodName := 'TCadastro.cancel' + MethodName;
     end;
   end;
 end;

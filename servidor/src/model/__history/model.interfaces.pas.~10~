@@ -1,0 +1,21 @@
+unit model.interfaces;
+
+interface
+
+uses
+  FireDAC.Comp.Client,
+  System.Generics.Collections;
+
+type
+  iConexao = interface
+    function Conexao: TFDConnection;
+  end;
+
+  iDAO<T: class> = interface
+    function GetPessoas(var aLista: TObjectList<T>): iDAO<T>;
+    function Conectar(aConexao: iConexao): iDAO<T>;
+  end;
+
+implementation
+
+end.
