@@ -146,60 +146,135 @@ end;
 
 function TDAOPessoa<T>.InsertLote(Value: TObjectList<T>): Boolean;
 const
-  vInsertPessoa = 'with rows as ( ' + 'INSERT INTO public.pessoa ' +
-    '(flnatureza, dsdocumento, nmprimeiro, nmsegundo, dtregistro) ' +
-    'VALUES(:flnatureza, :dsdocumento, :nmprimeiro, :nmsegundo, :dtregistro) RETURNING idpessoa '
-    + ') ' + 'INSERT INTO public.endereco ' + '(idpessoa, dscep) ' +
-    'VALUES((SELECT idpessoa FROM ROWS), :dscep) RETURNING idpessoa ; ';
+  vInsertPessoa = 'INSERT INTO public.pessoa ' +
+    ' (flnatureza, dsdocumento, nmprimeiro, nmsegundo, dtregistro) ' +
+    ' VALUES(:flnatureza, :dsdocumento, :nmprimeiro, :nmsegundo, :dtregistro) RETURNING idpessoa {INTO :idpessoa} ';
+  vInsertEndereco = ' INSERT INTO public.endereco (idpessoa, dscep) ' +
+    ' VALUES(:idpessoa, :dscep) RETURNING idendereco {INTO :idendereco} ';
+  vInsertEnderecoIntegracao = '  INSERT INTO public.endereco_integracao (idendereco) '+
+    ' VALUES(:idendereco) ';
 var
-  vQry: TFDQuery;
+  vQryPessoa: TFDQuery;
+  vQry2Endereco: TFDQuery;
+  vQry3EnderecoInt: TFDQuery;
   vPessoa: TPessoa;
   I: Integer;
   vConexao: iConexao;
 begin
   Result := False;
 
-  vQry := TFDQuery.Create(nil);
+  vQryPessoa := TFDQuery.Create(nil);
+  vQry2Endereco := TFDQuery.Create(nil);
+  vQry3EnderecoInt := TFDQuery.Create(nil);
   try
     vConexao := TConexao.New('PRINCIPAL');
-    vQry.Connection := vConexao.conexao;
-    vQry.SQL.Clear;
-    vQry.SQL.Text := vInsertPessoa;
+    vQryPessoa.Connection := vConexao.conexao;
+    vQryPessoa.SQL.Clear;
+    vQryPessoa.SQL.Text := vInsertPessoa;
 
-    vQry.Params[0].DataType := ftSmallint;
-    vQry.Params[1].DataType := ftString;
-    vQry.Params[1].Size := 20;
-    vQry.Params[2].DataType := ftString;
-    vQry.Params[2].Size := 100;
-    vQry.Params[3].DataType := ftString;
-    vQry.Params[3].Size := 100;
-    vQry.Params[4].DataType := ftDate;
-    vQry.Params[5].DataType := ftString;
-    vQry.Params[5].Size := 15;
-    vQry.Params.ArraySize := Value.Count;
+    vQryPessoa.Params[0].DataType := ftSmallint;
+
+    vQryPessoa.Params[1].DataType := ftString;
+    vQryPessoa.Params[1].Size := 20;
+
+    vQryPessoa.Params[2].DataType := ftString;
+    vQryPessoa.Params[2].Size := 100;
+
+    vQryPessoa.Params[3].DataType := ftString;
+    vQryPessoa.Params[3].Size := 100;
+
+    vQryPessoa.Params[4].DataType := ftDate;
+
+    vQryPessoa.Params[5].DataType := ftLargeint;
+    vQryPessoa.Params[5].ParamType := ptInputOutput;
+
+    vQryPessoa.Params.ArraySize := Value.Count;
 
     for I := 0 to Value.Count - 1 do
     begin
-      vQry.Params[0].AsSmallInts[I] := Ord(Value[I].FlNatureza);
-      vQry.Params[1].AsStrings[I] := Value[I].DsDocumento;
-      vQry.Params[2].AsStrings[I] := Value[I].NmPrimeiro;
-      vQry.Params[3].AsStrings[I] := Value[I].NmSegundo;
-      vQry.Params[4].AsDates[I] := Value[I].DtRegistro;
-      vQry.Params[5].AsStrings[I] := Value[I].endereco.DsCep;
+      vQryPessoa.Params[0].AsSmallInts[I] := Ord(Value[I].FlNatureza);
+      vQryPessoa.Params[1].AsStrings[I] := Value[I].DsDocumento;
+      vQryPessoa.Params[2].AsStrings[I] := Value[I].NmPrimeiro;
+      vQryPessoa.Params[3].AsStrings[I] := Value[I].NmSegundo;
+      vQryPessoa.Params[4].AsDates[I] := Value[I].DtRegistro;
     end;
 
     vConexao.conexao.StartTransaction;
     try
-      vQry.Execute(Value.Count, 0);
+      vQryPessoa.Execute(Value.Count, 0);
       vConexao.conexao.Commit;
       Result := True;
     except
       vConexao.conexao.Rollback;
     end;
 
+    if Result then
+    begin
+      vQry2Endereco.Connection := vConexao.conexao;
+      vQry2Endereco.SQL.Clear;
+      vQry2Endereco.SQL.Text := vInsertEndereco;
+
+      vQry2Endereco.Params[0].DataType := ftLargeint;
+      vQry2Endereco.Params[1].DataType := ftString;
+      vQry2Endereco.Params[1].Size := 15;
+      vQry2Endereco.Params[2].DataType := ftLargeint;
+      vQry2Endereco.Params[2].ParamType := ptInputOutput;
+      vQry2Endereco.Params.ArraySize := Value.Count;
+
+      for I := 0 to Value.Count - 1 do
+      begin
+        vQry2Endereco.Params[0].AsLargeInts[I] := vQryPessoa.Params[5].AsLargeInts[I] ;
+        vQry2Endereco.Params[1].AsStrings[I] := Value[I].endereco.DsCep;
+      end;
+
+      vConexao.conexao.StartTransaction;
+      try
+        vQry2Endereco.Execute(Value.Count, 0);
+        vConexao.conexao.Commit;
+        Result := True;
+      except
+        vConexao.conexao.Rollback;
+        Result := False;
+      end;
+
+      if Result then
+      begin
+        vQry3EnderecoInt.Connection := vConexao.conexao;
+        vQry3EnderecoInt.SQL.Clear;
+        vQry3EnderecoInt.SQL.Text := vInsertEnderecoIntegracao;
+
+        vQry3EnderecoInt.Params[0].DataType := ftLargeint;
+        vQry3EnderecoInt.Params.ArraySize := Value.Count;
+
+        for I := 0 to Value.Count - 1 do
+        begin
+          vQry3EnderecoInt.Params[0].AsLargeInts[I] := vQry2Endereco.Params[2].AsLargeInts[I] ;
+        end;
+
+        vConexao.conexao.StartTransaction;
+        try
+          vQry3EnderecoInt.Execute(Value.Count, 0);
+          vConexao.conexao.Commit;
+          Result := True;
+        except
+          vConexao.conexao.Rollback;
+          Result := False;
+        end;
+      end;
+
+    end;
+
   finally
-    vQry.Free;
+    vQryPessoa.Free;
+    vQry2Endereco.Free;
+    vQry3EnderecoInt.Free;
   end;
+
+  TThread.CreateAnonymousThread(
+      procedure
+    begin
+      TEnderecosDAO.AtualizarVazios;
+    end).Start;
 
 end;
 

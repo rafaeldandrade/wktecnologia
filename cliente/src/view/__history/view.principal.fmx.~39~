@@ -1,0 +1,1078 @@
+object frmPrincipal: TfrmPrincipal
+  Left = 0
+  Top = 0
+  Caption = 'Cadastro de Pessoas'
+  ClientHeight = 716
+  ClientWidth = 1071
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object lytTitulo: TLayout
+    Align = MostTop
+    Size.Width = 1071.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object recTitulo: TRectangle
+      Align = Client
+      Fill.Color = xFF0018AA
+      Padding.Left = 10.000000000000000000
+      Padding.Top = 2.000000000000000000
+      Padding.Right = 10.000000000000000000
+      Padding.Bottom = 2.000000000000000000
+      Sides = [Bottom]
+      Size.Width = 1071.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      object lblTitulo: TLabel
+        Align = Client
+        StyledSettings = [Family]
+        Size.Width = 1051.000000000000000000
+        Size.Height = 29.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 20.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = claWhitesmoke
+        Text = 'Cadastro de Pessoas'
+        TabOrder = 0
+      end
+    end
+  end
+  object lytConteudo: TLayout
+    Align = Client
+    Margins.Left = 65.000000000000000000
+    Size.Width = 1006.000000000000000000
+    Size.Height = 683.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object tbConteudo: TTabControl
+      Align = Client
+      Size.Width = 1006.000000000000000000
+      Size.Height = 683.000000000000000000
+      Size.PlatformDefault = False
+      TabIndex = 0
+      TabOrder = 0
+      TabPosition = None
+      Sizes = (
+        1006s
+        683s
+        1006s
+        683s
+        1006s
+        683s)
+      object tbiLista: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = True
+        Size.Width = 8.000000000000000000
+        Size.Height = 8.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'Lista'
+        ExplicitSize.cx = 8.000000000000000000
+        ExplicitSize.cy = 8.000000000000000000
+      end
+      object tbiCadastro: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = False
+        Size.Width = 8.000000000000000000
+        Size.Height = 8.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'Cadastro'
+        ExplicitSize.cx = 8.000000000000000000
+        ExplicitSize.cy = 8.000000000000000000
+      end
+      object tbiCadastroLote: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = False
+        Size.Width = 8.000000000000000000
+        Size.Height = 8.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'TabItem1'
+      end
+    end
+  end
+  object mtvMenu: TMultiView
+    MasterButton = btnMenu
+    NavigationPaneOptions.CollapsedWidth = 65.000000000000000000
+    Size.Width = 250.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object recMenu: TRectangle
+      Align = Client
+      Fill.Color = xFFB3D8FF
+      Size.Width = 65.000000000000000000
+      Size.Height = 683.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      object ShadowEffect1: TShadowEffect
+        Distance = 3.000000000000000000
+        Direction = 45.000000000000000000
+        Softness = 0.300000011920929000
+        Opacity = 0.600000023841857900
+        ShadowColor = claBlack
+      end
+      object lytMenuTopo: TLayout
+        Align = Top
+        Size.Width = 65.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object Rectangle1: TRectangle
+          Align = Client
+          Fill.Color = xC80018AA
+          Sides = [Right]
+          Size.Width = 65.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          object Layout1: TLayout
+            Align = Left
+            Size.Width = 65.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object btnMenu: TButton
+              Align = Client
+              Size.Width = 65.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'detailstoolbutton'
+              TabOrder = 0
+              Text = 'btnMenu'
+            end
+          end
+          object lblMenuTitulo: TLabel
+            Align = Client
+            StyledSettings = [Family]
+            Size.Width = 0.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 18.000000000000000000
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TextSettings.FontColor = claWhitesmoke
+            TextSettings.HorzAlign = Center
+            Text = 'Menu'
+            TabOrder = 1
+          end
+        end
+      end
+      object btnSair: TButton
+        Action = actSair
+        Align = Bottom
+        Enabled = True
+        ImageIndex = -1
+        Margins.Left = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 624.000000000000000000
+        Size.Width = 45.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'transparentcirclebuttonstyle'
+        TabOrder = 0
+        object RoundRect1: TRoundRect
+          Align = Contents
+          Fill.Color = xFFEE1A30
+          HitTest = False
+          Margins.Top = 2.000000000000000000
+          Margins.Bottom = 2.000000000000000000
+          Size.Width = 45.000000000000000000
+          Size.Height = 45.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          object ShadowEffect2: TShadowEffect
+            Distance = 3.000000000000000000
+            Direction = 45.000000000000000000
+            Softness = 0.300000011920929000
+            Opacity = 0.600000023841857900
+            ShadowColor = claBlack
+          end
+          object Label1: TLabel
+            Align = Client
+            StyledSettings = [Family]
+            Margins.Left = 20.000000000000000000
+            Size.Width = 25.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 16.000000000000000000
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TextSettings.FontColor = claWhite
+            TextSettings.HorzAlign = Center
+            Text = 'Sair'
+            TabOrder = 0
+          end
+        end
+        object RoundRect2: TRoundRect
+          Align = Left
+          Fill.Color = claWhite
+          HitTest = False
+          Margins.Left = -1.000000000000000000
+          Position.X = -1.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 49.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          object Image1: TImage
+            MultiResBitmap.Height = 64
+            MultiResBitmap.Width = 64
+            MultiResBitmap = <
+              item
+                Width = 64
+                Height = 64
+                PNG = {
+                  89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+                  DE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                  04A749444154785EED9B416C1B551086DF8CEDA04A95B063D2C64ED403420221
+                  E224082E3DD0D24AB9D120A18A03082E9C116D8540E250B8402F34E50207B814
+                  813820241012120554E082049438512942B44855A99D90264E43116DEC7DC38C
+                  33D9248EEDACBD1BD864FD498967C6B277FFFFEDBEF7BCFBD674E8D0A1439401
+                  7DDD1032FBE2337BFEEAE9BA59DEA1254F100025FB137FC0B973652D858A8606
+                  88E0D9BEEB8F72301AB3F6808398C1160C5B0D7FE87CB270FB30986F2A5A0A0D
+                  7505CD658646B9E14E90817BB4E41B8CE15DC92B3F5DD2B429B3FD030360F138
+                  11A4397D3F5DCCBFB3F44EF070A3AE40E6706C2E3B74826DF93848F182B358F1
+                  74EA4CF73CD84B1538CB6DF31880D9CF7F6FCF6687C6F4EDC0710D208E4B99DF
+                  3EE0F085A54AB0F086FED6B02989AEF208224ACBBBF061FADC6699E01A50CA0E
+                  BDCA5B3AAC69A0B0809F93D39397356D8E35498DD6B06C023754DDD3B65DAA5F
+                  56CA0E1F24435F562B35586B6701E04D30F60B8C270AE65699F7C13B16E34EAA
+                  0F0B5E4701EE7F9EE5BD7A43D375F0C64F7517F24779C75BDA8F4680383A97CD
+                  7D0F061FD09A0B90FDCC74C113A9CB13F35ADA7436324008D2049CEF1BDC574F
+                  3C7326594C8DFE97E2BD22A70377D627A5F1B4D43648160E69ECC2DF7AA35C4E
+                  3C1DC6717B99A04C40027A48E31588DEDB3DF3C39466A1250813102D653476B1
+                  60781CDE1AF835011D303D1ABB70E757D4704BE0C70444C084C62E04F1D09EFB
+                  8D68D7843553E1ADCEB2099A7A625B19208809AD4C9B791234C447CD5AF887D0
+                  DE7461FC3B4D9B2287DC5C263762000778F48869B97DC8EC055C3F34B70C99B1
+                  EE62FEA8660DF16DC06C66F0344F959FD2345C7830C1D72950CAE686432B5E00
+                  7384A7D64DFB045F06383676A786E1650313FC7582316A79DCFD5F60131A758C
+                  DB6E146844A3D121320608F54C88940142AD09913340586D42240D10D4846391
+                  354060139E8FB601D63A9136C0A2793DB206F00FA053E9C2E4C9481AB0243E7F
+                  44E2C819B05ABC1029036AC50B9131A09E78C19F018EDC59DB029019AB275EF0
+                  65400C9DDF350C2F1B5C15F26540AA30394E644F6B1A3E3C5C12F37D4D50B896
+                  191C01805C242F8A068D97DBE31BD1A8C3ABC7B61B055A112F6C2B035A152FA0
+                  25BB6EE90A5025AEE196A11DF102C6C8CC68EC4280EB6E99879976C50B6811D6
+                  DD0A47320F6B187AFC881790E7725F6BBC02C09353BBEEDBAD5968F12B5E403E
+                  DE3FD5D885BF7867573CFEAEAC17D652E80842BC80A9A9FCB764EC8F9AAF6664
+                  3E53FA64BEFFDE6ECD434350E205907FA5BEDC0122FCAA5AA9C13A660ED0BC05
+                  04673001575B5D2859BE2D7EF38E2BE345DE90A7CF795928199478A16A80702D
+                  3BF81A1A7851D360B1E6D7E4CE1B8378F1E22DAD34A49901418B17DC8950BA30
+                  F1126FE1434D8305CDDD0B0B3BFA346B0E9ABA0B333743BCE01AC087824D15F3
+                  8F13D12B5A0A1407D0D372F9C572E573599FAC6995CD122FAC990ACB799A2E4E
+                  BCCC5E3C02C6FEA2E5408891FD47C3A6F4FE797E9A87E6FDBC2B1F1199B396CC
+                  339B255E70FB805AAA8FCCF42E8C02D84368E1A01333F2C84C5BBF1DB84527D2
+                  5393F7CB51A6A5D0D0D0805AE46992993D9776B5F5D054BA72152E5C58D45287
+                  0E1D3A740807C6FC0B4DBCD60427F5A03B0000000049454E44AE426082}
+                FileName = 
+                  'F:\Programa'#231#227'o\Projetos\Testes\wkt\cliente\imagens\opcao-de-sair' +
+                  '.png'
+              end>
+            Align = Client
+            HitTest = False
+            Margins.Left = 9.000000000000000000
+            Margins.Top = 9.000000000000000000
+            Margins.Right = 9.000000000000000000
+            Margins.Bottom = 8.000000000000000000
+            Size.Width = 32.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+          end
+        end
+      end
+      object Layout2: TLayout
+        Align = Top
+        Position.Y = 50.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 88.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        object btnAtualizar: TButton
+          Action = ControllerPessoa.actAtualizar
+          Align = Top
+          Enabled = True
+          ImageIndex = -1
+          Margins.Left = 10.000000000000000000
+          Margins.Top = 10.000000000000000000
+          Margins.Right = 10.000000000000000000
+          Position.X = 10.000000000000000000
+          Position.Y = 10.000000000000000000
+          Size.Width = 45.000000000000000000
+          Size.Height = 49.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'transparentcirclebuttonstyle'
+          TabOrder = 0
+          object RoundRect9: TRoundRect
+            Align = Contents
+            Fill.Color = xFF5F28CE
+            HitTest = False
+            Margins.Top = 2.000000000000000000
+            Margins.Bottom = 2.000000000000000000
+            Size.Width = 45.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            object ShadowEffect7: TShadowEffect
+              Distance = 3.000000000000000000
+              Direction = 45.000000000000000000
+              Softness = 0.300000011920929000
+              Opacity = 0.600000023841857900
+              ShadowColor = claBlack
+            end
+            object Label5: TLabel
+              Align = Client
+              StyledSettings = [Family]
+              Margins.Left = 20.000000000000000000
+              Size.Width = 25.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 16.000000000000000000
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.FontColor = claWhite
+              TextSettings.HorzAlign = Center
+              Text = 'Atualizar'
+              TabOrder = 0
+            end
+          end
+          object RoundRect10: TRoundRect
+            Align = Left
+            Fill.Color = claWhite
+            HitTest = False
+            Margins.Left = -1.000000000000000000
+            Position.X = -1.000000000000000000
+            Size.Width = 50.000000000000000000
+            Size.Height = 49.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            object Image5: TImage
+              MultiResBitmap.Height = 64
+              MultiResBitmap.Width = 64
+              MultiResBitmap = <
+                item
+                  Width = 64
+                  Height = 64
+                  PNG = {
+                    89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+                    DE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                    04B549444154785EED9A5D4C1C5514C7EF3DB3BB08A2689B98A80F36852E5BA2
+                    06169AC6E883FA625FACB18A51282CD48826BE9846457D30698CD1FA1113AB2F
+                    D580BB1043DAC6A8D5D8973E98D444ED028612583E6CFAAC69FDA840F8987B3C
+                    B37BB2E9B233CC4059B809F7974CEEFD9FD9819933F7FECFBD2CC26030180C06
+                    83C160306C4924B781698D9DBF5D46C2FFF68FD4CF70A8886671C2AADC5573B7
+                    B230C4A10D0740CEF58EC5C7587A123801CD75A3910A7B6180AE789C2E9B4365
+                    77A4269B4EF0E902DA6B878E4A295E65B969208AE6D444FC144B57805B5F2AD4
+                    C2C7B98777C07244E84FD40E3F98D3CB90628A7B9B8BC46AEE791228016DB1C1
+                    C3D43C9F5339C0126181E2547BCDF9A25F92CAC43F47C4CF586E1A52D038F4C1
+                    37016DB5E94740C07B2C0B01DC2E43D6E9AE9DE92A8EE4B9A1125F144AFDC852
+                    5B564C40229A8E51334043DECA455CD93D17B1061CE3639DE5F860D3A202FB09
+                    7A0FBF73484B3C13D016FB653B9D3E0D126EE1902720705F79ACFA1D9679FA32
+                    7B2F03E07E25C43F1CD20ED7047435A6C3204227E96C0D877CA1F9F64A2236FC
+                    1CCB3C4E29924A3C439FB039A415AE09989F816374C30FB10C8CB2F153B7CA90
+                    9A8CFF20A47A83A55614B9A4E3F820E4872C578F9297512DED4D4DEF299AFB1D
+                    D1F4C3425A34B5AE1F14E2462A73BD2CBD783D9989BFCB7D570A1290757C697D
+                    EF637A41182F5B50F71DBFD854B2B9DF72CFC8ADE1C5A52B2CBDF04D407E0A04
+                    74FCA0B856061DC92660358E1F14AFCAA01BB016C70F8A5765D009989F91EFAF
+                    C5F103A3EC4F1275C3F5ACB40368917288FBA50120824A1D64A51D40EBFC49EE
+                    970C296082BBDA412340B6D0718646C245D7C346BF5223945097DCAEA553E354
+                    B08FCE66A67A729FD40FDFED627B6CB09BCC6CC55ABA180E6DFBF2C2BD7FB1DC
+                    10D67D1DB0553109E076CBA2AD0738CBE88ADA9AB795948FD1F23CC2E16B504E
+                    05DBC1C295AC815BF26F96CB9093618497B41D0115B1EA67E9F574D3923A4637
+                    B9B3F858F9E11DC092DBDCAF750EDC674BBB9FFA7A42DBDD28774B888C6A9B00
+                    09D06F0B35CFB22420628FB609488E35FC46C3BC8B652938576557BEA66D021C
+                    5299788ADED3072CD70D67E50A4BE2C0B1E9E8BCD60970D891897753F36D4E5D
+                    3F4AE05514A1477BA7E37F3A5AFB041C1152CD42A4955C6184436B86DE3C6D51
+                    B0A53F533FCAA1F5590708949DF4833CBF2D5E0D08EA4A72BCF12CCB3C87760F
+                    DE6523FE4AEFEC360EAD1A1478389569FC886596F549C0FAF3266D62DEE27E9E
+                    4474F87E1BECB39680320E05861EFE0B7AF84E9679349D02EA482236F8348B3C
+                    C9C9869FA480822F690372AE6AE9A617B85F80A609001A99D0D3111DDAC3813C
+                    7D997892DE67E0CA70ADE373A8008D4D10CB6D105FB7EF1ABE930379825686E5
+                    8EEF86D655806EEE0E69896FBA1AD3151CCAE254060B670F92A55FE050116E8E
+                    EF86D609C8818DF333C219F60586DD33F1C05540B99F1EF50F0E1540C6FD725F
+                    A6E93B969EF826404A675FB2D9C09389DAA122F34B4E345C12CA3AB07CCFC08E
+                    5F50EEBCF04D002AE9FC715303A4EBF6D7A90CA0443B9D9F73342AF1D51C9405
+                    AE14BEEB0087CEBAA13AA5B09CE58603B65CFA6F6A7AF4A478CAF37F0C5A6B7E
+                    BE3964956DCB8E0A83C16030180C0683C160581121FE07FF3EA7C84904E46D00
+                    00000049454E44AE426082}
+                  FileName = 'F:\Programa'#231#227'o\Projetos\Testes\wkt\cliente\imagens\atualizar.png'
+                end>
+              Align = Client
+              HitTest = False
+              Margins.Left = 9.000000000000000000
+              Margins.Top = 9.000000000000000000
+              Margins.Right = 9.000000000000000000
+              Margins.Bottom = 8.000000000000000000
+              Size.Width = 32.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+        end
+      end
+      object Layout3: TLayout
+        Align = Top
+        Position.Y = 138.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 209.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        object btnNovo: TButton
+          Action = ControllerPessoa.actNovo
+          Align = Top
+          Enabled = True
+          ImageIndex = -1
+          Margins.Left = 10.000000000000000000
+          Margins.Top = 10.000000000000000000
+          Margins.Right = 10.000000000000000000
+          Position.X = 10.000000000000000000
+          Position.Y = 10.000000000000000000
+          Size.Width = 45.000000000000000000
+          Size.Height = 49.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'transparentcirclebuttonstyle'
+          TabOrder = 2
+          object RoundRect5: TRoundRect
+            Align = Contents
+            Fill.Color = xFF10AC84
+            HitTest = False
+            Margins.Top = 2.000000000000000000
+            Margins.Bottom = 2.000000000000000000
+            Size.Width = 45.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            object ShadowEffect5: TShadowEffect
+              Distance = 3.000000000000000000
+              Direction = 45.000000000000000000
+              Softness = 0.300000011920929000
+              Opacity = 0.600000023841857900
+              ShadowColor = claBlack
+            end
+            object Label3: TLabel
+              Align = Client
+              StyledSettings = [Family]
+              Margins.Left = 20.000000000000000000
+              Size.Width = 25.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 16.000000000000000000
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.FontColor = claWhite
+              TextSettings.HorzAlign = Center
+              Text = 'Novo'
+              TabOrder = 0
+            end
+          end
+          object RoundRect6: TRoundRect
+            Align = Left
+            Fill.Color = claWhite
+            HitTest = False
+            Margins.Left = -1.000000000000000000
+            Position.X = -1.000000000000000000
+            Size.Width = 50.000000000000000000
+            Size.Height = 49.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            object Image3: TImage
+              MultiResBitmap.Height = 64
+              MultiResBitmap.Width = 64
+              MultiResBitmap = <
+                item
+                  Width = 64
+                  Height = 64
+                  PNG = {
+                    89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+                    DE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                    04B649444154785EED9BDF6F145514C7CFB9E382AEA92DD016883FA226C6181F
+                    3435105F7CF101A3A96D20B4F53F28C6901AF0A1446A532951A2254222C12713
+                    5F8CB44684C6A0243EF9228AA0F1C1C4284431D216DA6EA12DEDF69EE3B9B3A7
+                    35EDEC6EDBA51D7676F693ECDE73CE4EB273BE3373CFBD337710F2B0EEC4BB95
+                    00F645325CCF444F19841A60A80523563142C4803028DF4368F02203F47B9438
+                    33D2DC9ED22D02644D64F3A9CEE4F85462B761680703551A8E2496E886413C5C
+                    41C943575AF64E6A788E8000157D6F3FE6A1392D47FA710D95047206FF46061A
+                    6EEC7CEB770DF9CC13A0AAF7E073807C52CCF59948C9318CC48D23CD1DDFA9FF
+                    BF00957DEF3C8A60BF17B33A132959862DD0B3B36782715F0F7CD6730FA2FD4A
+                    CC524FDEB1DEB0F9123EEEBCDB39BE0037BDC9D74BED9ACF07223C515991D8ED
+                    DBAED431CC5C5EA4B7BF269F0FC8C259F43C67172D6C6DB5F1789BA4D6266E9E
+                    339A46CCA47D580438F80A1BFE54A359A01FD309AF7EBCF1CD010D44829A139D
+                    9BD226D12FE633994810626C316E90A37E36AE453179C75073D7D504A5EB6570
+                    745D430110B8DEB8119EFA59E023514C7E162702183CAA6E004219DD1A30B5EA
+                    07208BDFA819592CD3D76A06F0C86C32E0E5EE28A43389ECD19F4546B557D50C
+                    22B91B297F7E29CC067A406A4696BC3948EE58D5D72D93A6ECA0C70F8D6CEFF8
+                    5BDD1561E327EFDD7B2B79EB7DE980EADC399689926536E7936BD36FFCDBD035
+                    9189AD0CEBBE38F0205BFC4BDD00398FFE6A21C9B722E02EF9EBADE2BA12251F
+                    B3550627AF4E4CDF25F170095D0064BC5FCD00F97E5B2D4217A0D8280BA06D6C
+                    290BA06D6C290BA06D6C290BA06D6C290BA06D6C2978369899D54DEF42A01A0D
+                    2D0DC2E745F62DEACD87E00730FCAD7A4B42767E30B966E678AE59E462B3C182
+                    05A8ECED3EE66670EADE5198F958AAA9E33575E7B17AD361843CF7124306F169
+                    B596CD6DF4015C448FC80BDF977215D0B6003067DF113E85EF4BE10230FCACD6
+                    9D87F9A25ACBA6E02AE056914C4C79AD88B851434B63A5CB20F34072ADFD28F4
+                    32582855BDDD3D5241F6A83B1F86C3A34DFBF7AAB72214DD5DE162A32C80B6B1
+                    A52C80B6B1A52C80B6B1A52C80B6B1A52C80B6B125740118F91F350330D01535
+                    43237401DC0D4C770F4FA67EE7C43D9FF9D0391773B33A7FA310097D3618368B
+                    CF0631F72A2AB6D1EF23F2E620B91BB0FE42E8AC905DE6CD8E22C4206E563308
+                    D1901109722E86CCACBA8E36C4B973B00803727AF005F5B3806D6ED5B53A91A3
+                    FAF36E39FAFEB2F9AC788C3F1964744BCA7351ED969C475104B7CF330CA7C5CC
+                    F9FE1323F6E38693872AECF4D425306683C6B321FD041FB14C670DAE19D25851
+                    423C5DE381B70D98DA16CB2941E947FC272A957D07F620608F1F8E0B0C6DA34D
+                    FB8FFA252295BCEF4322FAD5FF210658A05F46397DDCD9991AF952DB1426122F
+                    CB8860D0F74B19A2EB68700734774D3B776E9090DABEEFB2F1A051CCA27E29EA
+                    F690BAEF99FAB11D1D7F6840C6420B702F5032D853A2CC931A2A09DC252E15AF
+                    21D5D27149433E7367C02CA99DFBFE1CA3749D4C105A4BE492182686F6B171BB
+                    6561F28EBCCFD55D899CB1532F301BF766599D6C5C8308B5D28306842B0A646C
+                    CF0C83043488602E2052FF1A6BCF0C3577DDD42D1600F01F7A3FD0F90B194521
+                    0000000049454E44AE426082}
+                  FileName = 
+                    'F:\Programa'#231#227'o\Projetos\Testes\wkt\cliente\imagens\adicionar-bot' +
+                    'ao-quadrado.png'
+                end>
+              Align = Client
+              HitTest = False
+              Margins.Left = 9.000000000000000000
+              Margins.Top = 9.000000000000000000
+              Margins.Right = 9.000000000000000000
+              Margins.Bottom = 8.000000000000000000
+              Size.Width = 32.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+        end
+        object btnAlterar: TButton
+          Action = ControllerPessoa.actAlterar
+          Align = Top
+          Enabled = True
+          ImageIndex = -1
+          Margins.Left = 10.000000000000000000
+          Margins.Top = 10.000000000000000000
+          Margins.Right = 10.000000000000000000
+          Position.X = 10.000000000000000000
+          Position.Y = 69.000000000000000000
+          Size.Width = 45.000000000000000000
+          Size.Height = 49.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'transparentcirclebuttonstyle'
+          TabOrder = 1
+          object RoundRect7: TRoundRect
+            Align = Contents
+            Fill.Color = xFFFFA510
+            HitTest = False
+            Margins.Top = 2.000000000000000000
+            Margins.Bottom = 2.000000000000000000
+            Size.Width = 45.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            object ShadowEffect6: TShadowEffect
+              Distance = 3.000000000000000000
+              Direction = 45.000000000000000000
+              Softness = 0.300000011920929000
+              Opacity = 0.600000023841857900
+              ShadowColor = claBlack
+            end
+            object Label4: TLabel
+              Align = Client
+              StyledSettings = [Family]
+              Margins.Left = 20.000000000000000000
+              Size.Width = 25.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 16.000000000000000000
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.FontColor = claWhite
+              TextSettings.HorzAlign = Center
+              Text = 'Alterar'
+              TabOrder = 0
+            end
+          end
+          object RoundRect8: TRoundRect
+            Align = Left
+            Fill.Color = claWhite
+            HitTest = False
+            Margins.Left = -1.000000000000000000
+            Position.X = -1.000000000000000000
+            Size.Width = 50.000000000000000000
+            Size.Height = 49.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            object Image4: TImage
+              MultiResBitmap.Height = 64
+              MultiResBitmap.Width = 64
+              MultiResBitmap = <
+                item
+                  Width = 64
+                  Height = 64
+                  PNG = {
+                    89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+                    DE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                    065249444154785EED9B6B6C545510C767E66E292D2DBB157954A34834515163
+                    D40F1A6224BC54A2269A101E6D019FE8177C45BE608C219AF80189895F144449
+                    60B708097CE1A131D002D1E807885141838618232860E86E0B7DF79EF19CBBB3
+                    D77DDCEEABDDDD6BD85FB2DD3373EF6E76FEE7CC9CB9BBB750A54A952A55AE62
+                    509E4745ED6A980AC38119C03C0D29F7F9E30D13F5E1109C85BAE8795C0A43E2
+                    1E373C0352DB274D632BF02A28788A086F13774551CABE0248FB10F0636A8B1D
+                    137706EA20D47257F02D602D17D813F5E7EFE0805A47CBAEFC23A7A49021808A
+                    845E61B4DF21B61AC5E52B14D87DF4EBE546DCA08769A8EDD327B1D57F90801E
+                    1297837ECD1F68D33C5AD5FDBBB85C5C01B81302EA5C680B213C232E5FA2A3DE
+                    65B5C6968BE9C29B9BEB5543FF7E029827AE14F40AFA1303388F56F49C119783
+                    3E3F8E3A17FCC0F7C1331FC0A6D86A315D72056F20B26EE011EE543B27DF2C2E
+                    076705A870A80511228E2709A5601088F7E8BCFB06813D73A8D430400333DC84
+                    88837825B6115F846139E4A2DA436DC8B043CCACA4A703F23698A826349E26B0
+                    6E74CE1014C37154BCD42B6FFC880A07DFD0226D14332BC9E9405C1B5A92113C
+                    A8933860CDF773F0A6E0A9F649D3C5046AEB7E5FAF94F56266C54907C587CD6E
+                    47FA458F8BDF0555E0057AFED265317D87C979B606F731D71C55ED53AE13B716
+                    21F65EDE2280359329B089F474DF2B3E073DFB3FD1CAAEEFC4F41DC9054F3F6E
+                    65B63B8A1541F70A8FE8F7B09BC58CC3F8838C7C8757B51F5D045E276616EC01
+                    D2F9D020561C065F2EFD6C5B9DB70879D404C4BDFAB5FEC729780DBD5F2407AF
+                    2BF98F4AA9AFC58C8BA0460EF1EEA933C4952B1D4EA0AA7BD3F70278B5B7BA1B
+                    3C825C3F072190B2CC09F1763534D49129426A3AE8FEE67B7D7DF030ADBAD0EB
+                    6B0112D53E25783DEB5453F304D4F6D6338D6C11B78B23C2F0F091CC74888B60
+                    82C7096A212DEBE9728E993F7EC42BE79DE06B6B1733F7D7F1081DD6C2DC2587
+                    5270D2C1AB26003F4BC40B12C11B7C29C058824FE029426BF7366CED8E8AE9E0
+                    3B013C0B9E93F3758FF2405FBD0EBE2357F0091C11D20A633ABE122067CE5BD6
+                    217DEC4E39941F8C03CC83A37E93E41B01C663D9A7935EF0BCF08500950ADE50
+                    71012A19BCA1A202543A7843C504F043F0868A08E097E00D6517C0ECF350DFAB
+                    7BFBA4E0817F2E669F4FE2447A87972F6515C0048FD87F0088E68A2B0E0382D5
+                    FF20A365822F6C9FD7C1EB375894DEE1E54BD90430CBDE343919C16BCC050C02
+                    7D494477882B2FCCB2375775C5066F288B005E393F568ACDF9744A2E8067C103
+                    B8C88A179ADC1757418C57F086920A305AF068E3025AD97D1871647EA1228C67
+                    F0869209C0BBC1CAA8F60A2E20E27C5A153D696C6AE9D576609116E5B473426E
+                    8AAEF6A351BA15106DAE4D2E78CECC332EA496E829713950CBA5BF1087E7E65A
+                    09E351F0BC28690A2483001B12339F4E1E2BC173E6CD2AB3778436DBED8D3D2A
+                    1C2CAAC0964D003D87B60C3C715602E3736226E3B9CF9BE0D570701B11AC31F7
+                    3270913B4CD90460E0F51C091D370F3B12DA236E17B53D388B71A45DCC04A336
+                    396A38B49500578A59346513407E80BD4F1E290D8F0A8766720075FFFFDF8FB4
+                    D9729E23C126FDC19F16734C943105BC718227E8248659E2CAB9D571C00EC870
+                    CC54460005213D8B6B54B8E92546FB5872F09A71DFEAB251110174E19AAEF785
+                    CD88FC51BECBBE54543C0512E45AF6A58214DAE9BF064F96E7B25170F0831494
+                    918BEE337A64581004B6755EC67188EF96D1D858F377BF2E57D7E4F3A0DAD803
+                    05CD3C62E6172684A971E409EA3DF9739D07CBC47660C039D41AFD564CDF6147
+                    82FA1A03178BE9C044B36945D72F62E60DE9A5B34FC62EACEC4FD4D629FEBC53
+                    744768757AF03A85CE1413BC817028B6C7DC3B27B683F96606EBEC4ED39D89AB
+                    E2F0DBBA5E85432FEB9677ABB85C9060930C0B267EA364A4693902EF743C4968
+                    65070179AF73A324F245719715669CA8DBE85BF4275DA2677EB6B85D9452A7A8
+                    AFE71EAF1B28F3C111C06087831F12E25A31FF17E8098A22D9F753EBE5DFC455
+                    306E1F40D777BFAE2F473F15D3F738DF2F103E3696E00DEE0A48A0DA436B99ED
+                    77758756F67E206F943ACA48ABA92D9652BB8A21430003471AAE556CBDA68F3E
+                    E99577954017EA5E00EB2B64F84C07BE5FDC63C65380648C18CC81E68AFECB8C
+                    52E7A1A6FB6C29FE65A64A952A55AA5CBD00FC0B6FA7AB45B74B40FA00000000
+                    49454E44AE426082}
+                  FileName = 
+                    'F:\Programa'#231#227'o\Projetos\Testes\wkt\cliente\imagens\editor-de-sel' +
+                    'ecao-de-fonte.png'
+                end>
+              Align = Client
+              HitTest = False
+              Margins.Left = 9.000000000000000000
+              Margins.Top = 9.000000000000000000
+              Margins.Right = 9.000000000000000000
+              Margins.Bottom = 8.000000000000000000
+              Size.Width = 32.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+        end
+        object btnExcluir: TButton
+          Action = ControllerPessoa.actExcluir
+          Align = Top
+          Enabled = True
+          ImageIndex = -1
+          Margins.Left = 10.000000000000000000
+          Margins.Top = 10.000000000000000000
+          Margins.Right = 10.000000000000000000
+          Position.X = 10.000000000000000000
+          Position.Y = 128.000000000000000000
+          Size.Width = 45.000000000000000000
+          Size.Height = 49.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'transparentcirclebuttonstyle'
+          TabOrder = 0
+          object RoundRect3: TRoundRect
+            Align = Contents
+            Fill.Color = xFFE51668
+            HitTest = False
+            Margins.Top = 2.000000000000000000
+            Margins.Bottom = 2.000000000000000000
+            Size.Width = 45.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            object ShadowEffect3: TShadowEffect
+              Distance = 3.000000000000000000
+              Direction = 45.000000000000000000
+              Softness = 0.300000011920929000
+              Opacity = 0.600000023841857900
+              ShadowColor = claBlack
+            end
+            object Label2: TLabel
+              Align = Client
+              StyledSettings = [Family]
+              Margins.Left = 20.000000000000000000
+              Size.Width = 25.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 16.000000000000000000
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.FontColor = claWhite
+              TextSettings.HorzAlign = Center
+              Text = 'Excluir'
+              TabOrder = 0
+            end
+          end
+          object RoundRect4: TRoundRect
+            Align = Left
+            Fill.Color = claWhite
+            HitTest = False
+            Margins.Left = -1.000000000000000000
+            Position.X = -1.000000000000000000
+            Size.Width = 50.000000000000000000
+            Size.Height = 49.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            object Image2: TImage
+              MultiResBitmap.Height = 64
+              MultiResBitmap.Width = 64
+              MultiResBitmap = <
+                item
+                  Width = 64
+                  Height = 64
+                  PNG = {
+                    89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+                    DE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                    046349444154785EED9B4D6C1B5510C767666D272DA5059A0FEC3820C4B10810
+                    05F50CC2E1D200422A12E2C08926F482108802957028A25040E2162570E28038
+                    548203911049B9A356825602AE15257688135A9556D4F9D819E6D9C3264BD634
+                    9690F07AF72739F3FEB33EBC9937BB6FD7D941B8010B83E3F730C341002E2162
+                    D1072910D02E3BDC5130F03502A880E80768968866F28B933FD9E1485A26A019
+                    38BF0B481A7C8C6139AD7F8E0E2D7FF2BD79426C4980C021AF3AB0F73D067859
+                    B379C30A89035A191A0E7D58AC0DBE8EF0968E370805B8D87F64D73AAC7F1EFB
+                    556F85F04C0632CF0C2E4D5E330FE8223711289306FF59D706EFD0D8D6904FB9
+                    2A37CF46055406C63F50F34A5345833EAFF8400BE0F1EFE6EA2C7CDAEB01E7C5
+                    A31EF344A2E7C0FBC3B5A9A36EDC4840B5EF85FD3EC9D996E73CF377E2C109CE
+                    DE74FA8EF98FAE9BB723B9587C6907AD5E2F21C31B5ADF07CC1DC25D1390E9C1
+                    E2F2D40F8D802B7D637340F868E3E826345382201343B5E9B7F58B62EE58A093
+                    45ADEA37D596A316562F8B73C3CB5323B83078641F0BFF68FE1002522ED6A68F
+                    9B8C25F303E3658D7EC2640824D947BAD78F9A0EA365EF56DE546C19AA4D1DD7
+                    953C633284F838AAD5C125D321DC391FB7B28FA21103CA09932150A04488346C
+                    3A007DA8AFF5AECC998C3D7E6EE7AC06BB6A72039261F275DB3019A097C8EA5D
+                    BF7C5A37197BDCCEE533544D06E873CDED14F560A30F11576DD83578C87FD830
+                    4063DF1DDC092695340166134B9A00B389254D80D9C49226C06C6249136036B1
+                    A409309B58D204984D2CEE97D32D3F7B21C0F9426DEA7E930117F6BC784B2E57
+                    FF0201EF03E42DBFB4FEAF0889009FABAFC353775FFEF88A7903AA7D87CF0BD1
+                    BD2603DAAA806CB63E02880F0BC26D02746B477D744E80F4488F878FD974B745
+                    5B0920C47FFD8F4B27D0EE1CD38BA0D96DC1222B36EC58DA9D635B09585BEB9D
+                    45866F51E012025FEEA88F9B93CE6DC5976F6CBADBA2AD5D20CEFC27BB403792
+                    26C06C6249136036B1A409309B58D204984D2C6902CC2696340166134B9A00B3
+                    898518B6BE3DE5FBB0DB865D830FB0C7869BB9421ED0A289000F207FE1CEE77A
+                    4DC69E4AFEF04E0F69CBFB9008B248C070D1748078D09BADF744BE421B4B7C2C
+                    0942CE548068ECA407225F89459F8EB957CE4DC6161783081C3319466327D75A
+                    66320CC101F7BEBDA9D852ED1F2B23E2432643A00733E4FAEA5CF380F94268F6
+                    CAEE7DFB3856829B73A57F6C821123179141660BBF4DFFDC08ACD2F7FC034C78
+                    9680A2B74581337AAABCC3B91D73716899F156FF1C7165DF6AE51B2D3392D95F
+                    5C9A3C17ACECAF03E32735FA574D46D22D4D530272B2589B7ECD8D8304B8B6B9
+                    6AFFC29780F4B8B9BA120DFEEBA1DAA55184537A6BB0E94ED075546620F3AC6B
+                    2E3457D781025F65C57BFAEFE01DA173DE75541696F24FB8BEBA66BB6977E062
+                    71659F5F1A7C7273D7A8A3E5D5BDD94DE697F52B87CC154FDA6D9EFE278D4430
+                    1F740D46425C64A08296CDCD76B8A3D092BDAAB7B655649A179459B7CFBBADCE
+                    0E4700F017567E01E6DDC25F8C0000000049454E44AE426082}
+                  FileName = 
+                    'F:\Programa'#231#227'o\Projetos\Testes\wkt\cliente\imagens\botao-de-meno' +
+                    's.png'
+                end>
+              Align = Client
+              HitTest = False
+              Margins.Left = 9.000000000000000000
+              Margins.Top = 9.000000000000000000
+              Margins.Right = 9.000000000000000000
+              Margins.Bottom = 8.000000000000000000
+              Size.Width = 32.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+        end
+      end
+      object Layout4: TLayout
+        Align = Top
+        Position.Y = 347.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 150.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        object btnSalvar: TButton
+          Action = ControllerPessoa.actSalvar
+          Align = Top
+          Enabled = True
+          ImageIndex = -1
+          Margins.Left = 10.000000000000000000
+          Margins.Top = 10.000000000000000000
+          Margins.Right = 10.000000000000000000
+          Position.X = 10.000000000000000000
+          Position.Y = 10.000000000000000000
+          Size.Width = 45.000000000000000000
+          Size.Height = 49.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'transparentcirclebuttonstyle'
+          TabOrder = 1
+          object RoundRect13: TRoundRect
+            Align = Contents
+            Fill.Color = xFF91C640
+            HitTest = False
+            Margins.Top = 2.000000000000000000
+            Margins.Bottom = 2.000000000000000000
+            Size.Width = 45.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            object ShadowEffect9: TShadowEffect
+              Distance = 3.000000000000000000
+              Direction = 45.000000000000000000
+              Softness = 0.300000011920929000
+              Opacity = 0.600000023841857900
+              ShadowColor = claBlack
+            end
+            object Label7: TLabel
+              Align = Client
+              StyledSettings = [Family]
+              Margins.Left = 20.000000000000000000
+              Size.Width = 25.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 16.000000000000000000
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.FontColor = claWhite
+              TextSettings.HorzAlign = Center
+              Text = 'Salvar'
+              TabOrder = 0
+            end
+          end
+          object RoundRect14: TRoundRect
+            Align = Left
+            Fill.Color = claWhite
+            HitTest = False
+            Margins.Left = -1.000000000000000000
+            Position.X = -1.000000000000000000
+            Size.Width = 50.000000000000000000
+            Size.Height = 49.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            object Image7: TImage
+              MultiResBitmap.Height = 64
+              MultiResBitmap.Width = 64
+              MultiResBitmap = <
+                item
+                  Width = 64
+                  Height = 64
+                  PNG = {
+                    89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+                    DE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                    064049444154785EED9B7B685B551CC7CFEFDCB47B3999D33D706E2A082A3275
+                    F8A04B5BD3ECC1E6567028537082F8D7505CD34EC610C4B9FACF3637DA6E1319
+                    820AC33D2A224C36A76EA6B14DB7C9141505750C650EB7753EF66CD326F7FC3C
+                    BFE497D8A46B72EFCDCDA3D80F94FC7EBF1B4ABEDFF3B8E7DC9C88514619E57F
+                    0DF06B4E761CAF1F6FF65D18C36949503123FAA23F7485535718D6809623BEDB
+                    A480150A45BD4473B60063025F2A2D685E5560FC2211F72994BB9B6A823FF315
+                    470C31A0EDE8E2EB3116598F86F9BC44A3A42D9E0BA5441411E6ACAE0DFEC825
+                    DBA419B0F568EDEDA8E06321E43D5C2A77628038BBA13AF413E7696C3DE27F5C
+                    29AC1280A7A2E32BDF5D73FFE757F9528A9401DBC3FE5BB59D47A514D3B954EE
+                    C4F4C75F11F006DB394FB1EE87E595932EF6EC94004F7249771771023CE6A286
+                    AACE5FB912276EC0F6A0EF3AB3428485847BE3D5A1C4048A3302F1BC7613B956
+                    02E454FD19662809037A7E7AF65AE2771C7FA022323091EACB129541A0F85D20
+                    F80335C1935C4918D0DA5DF7BA0E5E895706A1C7D85969607345CCDCF3426DD7
+                    3F5C2E296D07168FA9987865FCB53E4F56F149324C80D623F3A6818A9E1C32CB
+                    2BFC5E8A8A4757D51CFA832B658D25F14906992075333F91295E29F32FE1114B
+                    478A781AF3BD03133ED0616EF1048899C2505F6CEB5A70B39E27702997538034
+                    3605AA42A7392D6BE213DEA573ED52C8C7B8640D84594A0E6C953ABC2B511984
+                    E9D9C35159E3587C1290F3A540358DD3044AF435D61E3AC559D992B7780D2AEC
+                    D177938CF12FCC5E0ECB1637C41320E4461A02230A9AED275F3ABF375FF14A88
+                    CD81EAE03B23CA005BB7BA2C90F8266FC71A8A478C0185104F8C080368CC1742
+                    3C51F60690781AF33A745D3C016DDD75699B1B5A0536D574DEC46956DA3A7D55
+                    C280D54AA9A90070182E8EDB145872B09F2FE78D5BB3BD6643C0DBF132C76938
+                    EE01DAB8155A7CA70E974B297DDA8066BCBEF7F0C62EEFC4C43BF2A318E20947
+                    06B475FB699FFD9EFEF3C40B0C48593DD6A8FC949E2A71C911C96EEFCAAD2E8B
+                    78C2B60109F1F8BE0ED3C4A740315760E4A053130A3DE633B165404EF1491C9A
+                    506CF18465035ABBFC4B14C476E930BBF824DA04A5FA3EB13A2724C7BC0EF312
+                    AFD960553C61D90030D45B120D83534BE88D86B752561CCC6542B126BC6B61C9
+                    8096A06F12ED9F39B5452E134A299EB06440933F7441BF9C4964F619CE84528B
+                    276C4C82D0A8941ED90EC934A11CC413960D483C82C695F99A40EB846DC7E6DF
+                    58ACFB7C2E6CF4003D146A426F4B10ABF231217E77304DFA72A2A8B3FD70D832
+                    80085477BC996F4FD058BA350E47B6966F09FB96B584FD8F709A13DB0610D413
+                    5C30C111D91639AD61DF7A09F09140ECD8D23D6F0697B3E2C800A214266413DF
+                    16F6BDA63764AF522CF564239539257E21078E0D208A6942F696AF0B0880759C
+                    DA222F03886298904D7C1C14F51CD9266F0388429A9053BC46F7F7B4730E7670
+                    C500A2102658119F2FAE1940B8694231C413AE1A40B86142B1C413AE1B40E463
+                    4231C513053180706242B1C513053380B0634229C413053580B06242A9C41305
+                    3780C8664229C513928E9E729C4016E6482C9900129E41655EA45C0B8F208A46
+                    37C4A38221BB4B29E4650EB342DB86731CC7D15D622C1D9AE4D4551ABDC15DE3
+                    C6F64E01C4BB27F5E30D8DD51D6D7CC931EDEDCB0DBD0CBC83D3144654A5E91A
+                    0E1A02438E99C6009FE2D075563EF875948EB63EE70F45B89417676EE9592824
+                    4CE6348E1E6AA7AD9E2A9788B09FE314A070EDE6AF6A67725AB6D0117EDDFD37
+                    719A02040ED1341C7AA8C80F87CE0330D93360ECB7FA50A114BCF1EDC2099181
+                    2B7B418AD95C4A2125ECE43027598FCAA2C01E40688E41E5EE97BC9FFDCDE592
+                    42AD1E19B85A2FC06C1628EFE4F27F20EE0B54872C3F6C8D1B406E7A7AFBC3BA
+                    3BDC17AF66A0C034A529CE6A6B5DFBEEDF11203CC214D3750FADE44A1A7A537C
+                    5E3BF070D3DCD06F5CCA496A1FDDDAB9601642ECD8083A2E9F866EA47EC38485
+                    0D355FD29905CBA416427438527AF021A1F01B2E8D1C50FC29D15864573C91B6
+                    12A4F3C11111ADD3FF710B39CAE5B28556967A69B95B183827E0ED0871D916A9
+                    2190092D864C504FA3C2A52025FD9022AF67F9AEA1449F6EA0137A1E380026EC
+                    69A80D7EC7571C31AC019994C3CFE62E838AADADE9B6B4C41D65945146C98D10
+                    FF02EB10139CE0F55CE50000000049454E44AE426082}
+                  FileName = 'F:\Programa'#231#227'o\Projetos\Testes\wkt\cliente\imagens\verifica.png'
+                end>
+              Align = Client
+              HitTest = False
+              Margins.Left = 9.000000000000000000
+              Margins.Top = 9.000000000000000000
+              Margins.Right = 9.000000000000000000
+              Margins.Bottom = 8.000000000000000000
+              Size.Width = 32.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+        end
+        object btnCancelar: TButton
+          Action = ControllerPessoa.actCancelar
+          Align = Top
+          Enabled = True
+          ImageIndex = -1
+          Margins.Left = 10.000000000000000000
+          Margins.Top = 10.000000000000000000
+          Margins.Right = 10.000000000000000000
+          Position.X = 10.000000000000000000
+          Position.Y = 69.000000000000000000
+          Size.Width = 45.000000000000000000
+          Size.Height = 49.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'transparentcirclebuttonstyle'
+          TabOrder = 0
+          object recFiltrarCor: TRoundRect
+            Align = Contents
+            Fill.Color = xFF651E1E
+            HitTest = False
+            Margins.Top = 2.000000000000000000
+            Margins.Bottom = 2.000000000000000000
+            Size.Width = 45.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            object ShadowEffect4: TShadowEffect
+              Distance = 3.000000000000000000
+              Direction = 45.000000000000000000
+              Softness = 0.300000011920929000
+              Opacity = 0.600000023841857900
+              ShadowColor = claBlack
+            end
+            object lblFiltarTitulo: TLabel
+              Align = Client
+              StyledSettings = [Family]
+              Margins.Left = 20.000000000000000000
+              Size.Width = 25.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 16.000000000000000000
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.FontColor = claWhite
+              TextSettings.HorzAlign = Center
+              Text = 'Cancelar'
+              TabOrder = 0
+            end
+          end
+          object recFiltarImagem: TRoundRect
+            Align = Left
+            Fill.Color = claWhite
+            HitTest = False
+            Margins.Left = -1.000000000000000000
+            Position.X = -1.000000000000000000
+            Size.Width = 50.000000000000000000
+            Size.Height = 49.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            object imgFiltarImagem: TImage
+              MultiResBitmap.Height = 64
+              MultiResBitmap.Width = 64
+              MultiResBitmap = <
+                item
+                  Width = 64
+                  Height = 64
+                  PNG = {
+                    89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+                    DE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                    042849444154785EED9BCF6F545514C7EF8F99E98CA244D269A1B13368488835
+                    864813C25F802C8A75A36E48405383924017B070EFCAC41FB890D8F22361E912
+                    E982D8AD0B43247623916868A7CC845AB0C64898329D778FDFFB7A0AC5FB5E31
+                    A13EE7F5BE4F727BCE3D6FDABCF3BDF79D374DCE95620DDEDDB9F3995CB3B9DF
+                    1873402AF5AA0882B2D0BA0797D6FCBDFF11C23DCEE31E6F0BA22923C484CEE7
+                    2F8FDFB8F1275F77884CE4CD8181C2E6BB770F93311F29A56CC2E985E82FFCFC
+                    6C13D1C79FD7EBCDE5E0431C01DEA9545ECC09F10DDC9797231B03ECE29F7344
+                    AF8F351ABF7028E4110146AAD5BD44744909D1CDA18DC682241A1EBF79F33B9E
+                    3F1460A45279015BFEFBD46FF9C7B3A08260EFCA4EC0620B71A85A2D628F4C78
+                    90BC650B8AE3C53067100A50203A8E2A3F607D2FD0FAA53CD131EBCA633B763C
+                    7B6F717106ABFF5C783102287647119D32449346A93B1CEE489431DD58CC7D24
+                    C4E85AB50C45F18FA78AC5ED72A4BFFF2D29E5D71C77C01FFA81B41E3A373DFD
+                    1B8752C1D16A75EB12D104DCC1E5880B0AFEDB0A55F000CFA3B89DC6E42DA76B
+                    B5B9BC944358C0DF39E44234A48C94BB78EA00854EA531F915AC0858E02F78EA
+                    80476597C2C3D0CB7307BC3327D94D2F41F02D7B0EA8035B95502AB650C84221
+                    B5ABBF4290CFCFB1EB82DC152A65F82A8CC2DCBF8F1740BA31AD566C0E3677F9
+                    5EA5823A110D0541FFD946A3CED375E1606FEFD3A5AEAE4FE0EEC6D061100B85
+                    9BB8AA96964E8EDFBA758F63EBC2E1BEBEFE7C2E37CB5387D8D5FFAF28158BEF
+                    C3D8B107C3BEA2ECD88362F501E57247E0274AE202E0D5D2C79E8B94CFB39718
+                    C90BD0616402B0F5964C00B6DE9209C0D65B3201D87A4B26005B6FC90460EB2D
+                    99006CBD251380ADB76402B0F5964C00B6DE9209C0D65B3201D87A4B26005B6F
+                    C90460EB2D99006CBD25710188A8C1AE0BD1BA76A3FC1B121740B5DB5F19214E
+                    C3BD827195C7151B93EDF618FC4449BC4728691EDB2304E5E3BBA8BABA525F23
+                    54A1109B83CDDD364AC6363F53AB15DB44991614D136765D90BB6D948C6D8624
+                    A55E6337BD10C5E6A0949A53D298299E3BA0388CDAAE6B9EA60ED4B76D5288E3
+                    3C8D624A09296D4B79247878BA6DCB791A45B0C9C35CC2D8120622803813D29E
+                    0DD4CDE60CE6B11FB42DE7B6EB9AA49C0C88E639DC9168297B24D13EB8A318B1
+                    398185A054DA8EBCA056B57A02CF8A6D5FF507294F9EA9D53E0D5F112D21BE84
+                    F9C9FA3E40C65CE39C97BF095EA8D516959443C6988EDEDEEBC482267AC3E66C
+                    270FBE248CD56A3352EB617C39E8E843514F48787072F5E9D1B006AC263C4029
+                    C44528F30A87360476DB23AFE173F5FAAF1C0A79B00356383B3B3BADCBE5417C
+                    F8880882D49F18B1C7E3F01FE8874B5A0FFE33798BB3035673B45CDED42A95F6
+                    C3B5A7AF76AB20E8315A97A19A235C87101E9FC73DCEE3067FB4EFF976A974F9
+                    FCF5EBF604790442FC0DCB516BF599C683D00000000049454E44AE426082}
+                  FileName = 'F:\Programa'#231#227'o\Projetos\Testes\wkt\cliente\imagens\cancelar.png'
+                end>
+              Align = Client
+              HitTest = False
+              Margins.Left = 9.000000000000000000
+              Margins.Top = 9.000000000000000000
+              Margins.Right = 9.000000000000000000
+              Margins.Bottom = 8.000000000000000000
+              Size.Width = 32.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+        end
+      end
+    end
+  end
+  object ActionList1: TActionList
+    Left = 96
+    Top = 560
+    object actLista: TChangeTabAction
+      Category = 'Tab'
+      Tab = tbiLista
+    end
+    object actCadastro: TChangeTabAction
+      Category = 'Tab'
+      Tab = tbiCadastro
+    end
+    object actSair: TAction
+      Text = 'actSair'
+      OnExecute = actSairExecute
+    end
+  end
+end

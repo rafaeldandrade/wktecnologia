@@ -90,10 +90,21 @@ type
     Layout3: TLayout;
     Layout4: TLayout;
     actSair: TAction;
+    tbiCadastroLote: TTabItem;
+    btnCadastrarLote: TButton;
+    RoundRect11: TRoundRect;
+    ShadowEffect8: TShadowEffect;
+    Label6: TLabel;
+    RoundRect12: TRoundRect;
+    Image6: TImage;
+    actCadastroLote: TChangeTabAction;
     procedure FormCreate(Sender: TObject);
     procedure actSairExecute(Sender: TObject);
   private
     procedure InicializaFormularios;
+    procedure CarregarAbaListagem;
+    procedure CarregarAbaCadastro;
+    procedure CarregarAbaCadastroLote;
     { Private declarations }
   public
     procedure Sair;
@@ -108,7 +119,7 @@ implementation
 
 uses
   view.listagem,
-  view.cadastro, controller.pessoa;
+  view.cadastro, controller.pessoa, view.cadastrolote;
 
 procedure TfrmPrincipal.actSairExecute(Sender: TObject);
 begin
@@ -122,12 +133,27 @@ end;
 
 procedure TfrmPrincipal.InicializaFormularios;
 begin
-  if not Assigned(frmListagem) then
-  begin
-    frmListagem := TfrmListagem.Create(Self);
-  end;
-  tbiLista.AddObject(frmListagem.lytGeral);
+  CarregarAbaListagem;
+  CarregarAbaCadastro;
+  CarregarAbaCadastroLote;
+end;
 
+procedure TfrmPrincipal.Sair;
+begin
+  Application.Terminate;
+end;
+
+procedure TfrmPrincipal.CarregarAbaCadastroLote;
+begin
+  if not Assigned(frmCadastroLote) then
+  begin
+    frmCadastroLote := TfrmCadastroLote.Create(Self);
+  end;
+  tbiCadastroLote.AddObject(frmCadastroLote.lytGeral);
+end;
+
+procedure TfrmPrincipal.CarregarAbaCadastro;
+begin
   if not Assigned(frmCadastro) then
   begin
     frmCadastro := TfrmCadastro.Create(Self);
@@ -135,9 +161,13 @@ begin
   tbiCadastro.AddObject(frmCadastro.lytGeral);
 end;
 
-procedure TfrmPrincipal.Sair;
+procedure TfrmPrincipal.CarregarAbaListagem;
 begin
-  Application.Terminate;
+  if not Assigned(frmListagem) then
+  begin
+    frmListagem := TfrmListagem.Create(Self);
+  end;
+  tbiLista.AddObject(frmListagem.lytGeral);
 end;
 
 end.

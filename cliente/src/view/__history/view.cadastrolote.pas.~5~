@@ -1,0 +1,34 @@
+unit view.cadastrolote;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Memo.Types,
+  FMX.ScrollBox, FMX.Memo, FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects,
+  FMX.Effects, FMX.Layouts;
+
+type
+  TfrmCadastroLote = class(TForm)
+    Label6: TLabel;
+    Memo1: TMemo;
+    Layout1: TLayout;
+    btnInserirLote: TButton;
+    recFiltrarCor: TRoundRect;
+    ShadowEffect4: TShadowEffect;
+    lblFiltarTitulo: TLabel;
+    lytGeral: TLayout;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadastroLote: TfrmCadastroLote;
+
+implementation
+
+{$R *.fmx}
+
+end.

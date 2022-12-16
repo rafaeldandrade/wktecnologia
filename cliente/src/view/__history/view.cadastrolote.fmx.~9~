@@ -1,0 +1,137 @@
+object frmCadastroLote: TfrmCadastroLote
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 581
+  ClientWidth = 1027
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object lytGeral: TLayout
+    Align = Client
+    Size.Width = 1027.000000000000000000
+    Size.Height = 581.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object Label6: TLabel
+      Align = Top
+      StyledSettings = [Family]
+      Margins.Left = 20.000000000000000000
+      Position.X = 20.000000000000000000
+      Size.Width = 1007.000000000000000000
+      Size.Height = 41.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 16.000000000000000000
+      TextSettings.Font.StyleExt = {00060000000000000004000000}
+      TextSettings.FontColor = claDarkblue
+      Text = 'Inserir em Lote'
+      TabOrder = 0
+    end
+    object Layout1: TLayout
+      Align = Left
+      Margins.Left = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 41.000000000000000000
+      Size.Width = 425.000000000000000000
+      Size.Height = 540.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object memJSON: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        Lines.Strings = (
+          '['
+          '    {'
+          '        "idPessoa": 0,'
+          '        "flNatureza": "FISICA",'
+          '        "dsDocumento": "123.123.123-12",'
+          '        "nmPrimeiro": "Rafael",'
+          '        "nmSegundo": "Silva",'
+          '        "dtRegistro": "2022-09-12T00:00:00.000Z",'
+          '        "endereco": {'
+          '            "idEndereco": 3,'
+          '            "dsCep": "72235-803"'
+          '        }'
+          '    },'
+          '    {'
+          '        "idPessoa": 0,'
+          '        "flNatureza": "JURIDICA",'
+          '        "dsDocumento": "12.123.123\/1234-12",'
+          '        "nmPrimeiro": "Sutentare",'
+          '        "nmSegundo": "LTDA",'
+          '        "dtRegistro": "2022-09-12T00:00:00.000Z",'
+          '        "endereco": {'
+          '            "idEndereco": 5,'
+          '            "dsCep": "72235-804"'
+          '        }'
+          '    },'
+          '    {'
+          '        "idPessoa": 0,'
+          '        "flNatureza": "FISICA",'
+          '        "dsDocumento": "123.123.123-12",'
+          '        "nmPrimeiro": "Artur",'
+          '        "nmSegundo": "Andrade",'
+          '        "dtRegistro": "2022-09-12T00:00:00.000Z",'
+          '        "endereco": {'
+          '            "dsCep": "72235-805"'
+          '        }'
+          '    }'
+          ']')
+        Align = Top
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        Size.Width = 425.000000000000000000
+        Size.Height = 472.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Viewport.Width = 405.000000000000000000
+        Viewport.Height = 468.000000000000000000
+      end
+      object btnInserirLote: TButton
+        Align = Bottom
+        Margins.Left = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 481.000000000000000000
+        Size.Width = 405.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'transparentcirclebuttonstyle'
+        TabOrder = 0
+        Text = 'actInserirLote'
+        object recFiltrarCor: TRoundRect
+          Align = Contents
+          Fill.Color = xFF4540C6
+          HitTest = False
+          Margins.Top = 2.000000000000000000
+          Margins.Bottom = 2.000000000000000000
+          Size.Width = 405.000000000000000000
+          Size.Height = 45.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          object ShadowEffect4: TShadowEffect
+            Distance = 3.000000000000000000
+            Direction = 45.000000000000000000
+            Softness = 0.300000011920929000
+            Opacity = 0.600000023841857900
+            ShadowColor = claBlack
+          end
+          object lblFiltarTitulo: TLabel
+            Align = Client
+            StyledSettings = [Family]
+            Size.Width = 405.000000000000000000
+            Size.Height = 45.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 16.000000000000000000
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TextSettings.FontColor = claWhite
+            TextSettings.HorzAlign = Center
+            Text = 'Inserir JSON em Lote'
+            TabOrder = 0
+          end
+        end
+      end
+    end
+  end
+end

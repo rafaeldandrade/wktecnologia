@@ -53,6 +53,7 @@ type
     procedure Cancelar;
     procedure Excluir;
     procedure AtualizarNatureza(aNatureza: Integer);
+    procedure CadastrarLote(aJSON: String);
   end;
 
 var
@@ -98,6 +99,15 @@ end;
 procedure TControllerPessoa.AtualizarNatureza(aNatureza: Integer);
 begin
   TPessoa(pbsPessoa.InternalAdapter.Current).FlNatureza := TNaturezaPessoa(aNatureza);
+end;
+
+procedure TControllerPessoa.CadastrarLote(aJSON: String);
+begin
+  daoPessoas.InserirJSONLote(aJSON);
+  CarregarPessoas;
+  frmPrincipal.tbConteudo.SetActiveTabWithTransition
+    (frmPrincipal.tbiLista,
+    TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
 procedure TControllerPessoa.Cancelar;

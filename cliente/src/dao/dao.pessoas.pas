@@ -22,6 +22,8 @@ type
     RESTClient1: TRESTClient;
     RESTRequest1: TRESTRequest;
     RESTResponse1: TRESTResponse;
+    RESTClient2: TRESTClient;
+    RESTRequest2: TRESTRequest;
   private
     { Private declarations }
   public
@@ -29,6 +31,7 @@ type
     procedure Atualizar(aPessoa: TPessoa);
     procedure Excluir(aPessoa: TPessoa);
     procedure Carregar(var aLista: TObjectList<TPessoa>);
+    procedure InserirJSONLote(aJSON: String);
   end;
 
 var
@@ -80,6 +83,14 @@ begin
   RESTRequest1.Resource := aPessoa.IdPessoa.ToString;
   RESTRequest1.Execute;
   RESTRequest1.Resource := '';
+end;
+
+procedure TdaoPessoas.InserirJSONLote(aJSON: String);
+begin
+  RESTRequest2.Method := rmPUT;
+  RESTRequest2.Params.ParameterByName('body').Kind := pkREQUESTBODY;
+  RESTRequest2.Params.ParameterByName('body').Value := aJSON;
+  RESTRequest2.Execute;
 end;
 
 procedure TdaoPessoas.Nova(aPessoa: TPessoa);

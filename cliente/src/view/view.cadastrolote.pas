@@ -1,0 +1,42 @@
+unit view.cadastrolote;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Memo.Types,
+  FMX.ScrollBox, FMX.Memo, FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects,
+  FMX.Effects, FMX.Layouts;
+
+type
+  TfrmCadastroLote = class(TForm)
+    Label6: TLabel;
+    memJSON: TMemo;
+    Layout1: TLayout;
+    btnInserirLote: TButton;
+    recFiltrarCor: TRoundRect;
+    ShadowEffect4: TShadowEffect;
+    lblFiltarTitulo: TLabel;
+    lytGeral: TLayout;
+    procedure btnInserirLoteClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadastroLote: TfrmCadastroLote;
+
+implementation
+
+{$R *.fmx}
+
+uses controller.pessoa;
+
+procedure TfrmCadastroLote.btnInserirLoteClick(Sender: TObject);
+begin
+  ControllerPessoa.CadastrarLote(memJSON.Lines.Text);
+end;
+
+end.

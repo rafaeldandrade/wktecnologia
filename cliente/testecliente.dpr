@@ -11,7 +11,8 @@ uses
   view.cadastro in 'src\view\view.cadastro.pas' {frmCadastro},
   model.enums in 'src\model\model.enums.pas',
   model.utils in 'src\model\utils\model.utils.pas',
-  dao.pessoas in 'src\dao\dao.pessoas.pas' {daoPessoas: TDataModule};
+  dao.pessoas in 'src\dao\dao.pessoas.pas' {daoPessoas: TDataModule},
+  view.cadastrolote in 'src\view\view.cadastrolote.pas' {frmCadastroLote};
 
 {$R *.res}
 

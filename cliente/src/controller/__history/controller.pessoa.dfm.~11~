@@ -1,0 +1,127 @@
+object ControllerPessoa: TControllerPessoa
+  Height = 480
+  Width = 640
+  object pbsPessoa: TPrototypeBindSource
+    AutoActivate = True
+    AutoPost = False
+    FieldDefs = <
+      item
+        Name = 'IdPessoa'
+        FieldType = ftUInteger
+        Generator = 'UIntegers'
+        ReadOnly = False
+      end
+      item
+        Name = 'FlNatureza'
+        FieldType = ftInteger
+        Generator = 'Integers'
+        ReadOnly = False
+      end
+      item
+        Name = 'DsDocumento'
+        Generator = 'ColorsNames'
+        ReadOnly = False
+      end
+      item
+        Name = 'NmPrimeiro'
+        Generator = 'ContactNames'
+        ReadOnly = False
+      end
+      item
+        Name = 'NmSegundo'
+        Generator = 'ContactTitles'
+        ReadOnly = False
+      end
+      item
+        Name = 'DtRegistro'
+        FieldType = ftDate
+        Generator = 'Date'
+        ReadOnly = False
+      end
+      item
+        Name = 'DsCEP'
+        Generator = 'BitmapNames'
+        ReadOnly = False
+      end>
+    ScopeMappings = <>
+    OnCreateAdapter = pbsPessoaCreateAdapter
+    Left = 184
+    Top = 120
+  end
+  object pbsEndereco: TPrototypeBindSource
+    AutoActivate = True
+    AutoPost = True
+    FieldDefs = <
+      item
+        Name = 'IdEndereco'
+        FieldType = ftUInteger
+        Generator = 'UIntegers'
+        ReadOnly = False
+      end
+      item
+        Name = 'DsCep'
+        Generator = 'Integers'
+        ReadOnly = False
+      end
+      item
+        Name = 'DsUF'
+        Generator = 'BitmapNames'
+        ReadOnly = False
+      end
+      item
+        Name = 'NmCidade'
+        Generator = 'ColorsNames'
+        ReadOnly = False
+      end
+      item
+        Name = 'NmBairro'
+        Generator = 'BitmapNames'
+        ReadOnly = False
+      end
+      item
+        Name = 'NmLogradouro'
+        Generator = 'ColorsNames'
+        ReadOnly = False
+      end
+      item
+        Name = 'DsComplemento'
+        Generator = 'ContactTitles'
+        ReadOnly = False
+      end>
+    ScopeMappings = <>
+    OnCreateAdapter = pbsEnderecoCreateAdapter
+    Left = 296
+    Top = 120
+  end
+  object actPessoas: TActionList
+    Left = 304
+    Top = 224
+    object actSalvar: TAction
+      Text = 'actSalvar'
+      OnExecute = actSalvarExecute
+    end
+    object actNovo: TAction
+      Text = 'actNovo'
+      OnExecute = actNovoExecute
+    end
+    object actAlterar: TAction
+      Text = 'actAlterar'
+      OnExecute = actAlterarExecute
+    end
+    object actCancelar: TAction
+      Text = 'actCancelar'
+      OnExecute = actCancelarExecute
+    end
+    object actAtualizar: TAction
+      Text = 'actAtualizar'
+      OnExecute = actAtualizarExecute
+    end
+    object actExcluir: TAction
+      Text = 'actExcluir'
+      OnExecute = actExcluirExecute
+    end
+    object actInserirLote: TAction
+      Text = 'actInserirLote'
+    end
+  end
+end

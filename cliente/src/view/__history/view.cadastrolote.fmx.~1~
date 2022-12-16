@@ -1,0 +1,75 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 687
+  ClientWidth = 1027
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Label6: TLabel
+    Align = Top
+    StyledSettings = [Family]
+    Margins.Left = 10.000000000000000000
+    Position.X = 10.000000000000000000
+    Size.Width = 1017.000000000000000000
+    Size.Height = 41.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 16.000000000000000000
+    TextSettings.Font.StyleExt = {00060000000000000004000000}
+    TextSettings.FontColor = claDarkblue
+    Text = 'Inserir em Lote'
+    TabOrder = 0
+  end
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Lines.Strings = (
+      '['
+      '    {'
+      '        "idPessoa": 0,'
+      '        "flNatureza": "FISICA",'
+      '        "dsDocumento": "123.123.123-12",'
+      '        "nmPrimeiro": "Rafael",'
+      '        "nmSegundo": "Silva",'
+      '        "dtRegistro": "2022-09-12T00:00:00.000Z",'
+      '        "endereco": {'
+      '            "idEndereco": 3,'
+      '            "dsCep": "72235-803"'
+      '        }'
+      '    },'
+      '    {'
+      '        "idPessoa": 0,'
+      '        "flNatureza": "JURIDICA",'
+      '        "dsDocumento": "12.123.123\/1234-12",'
+      '        "nmPrimeiro": "Sutentare",'
+      '        "nmSegundo": "LTDA",'
+      '        "dtRegistro": "2022-09-12T00:00:00.000Z",'
+      '        "endereco": {'
+      '            "idEndereco": 5,'
+      '            "dsCep": "72235-804"'
+      '        }'
+      '    },'
+      '    {'
+      '        "idPessoa": 0,'
+      '        "flNatureza": "FISICA",'
+      '        "dsDocumento": "123.123.123-12",'
+      '        "nmPrimeiro": "Artur",'
+      '        "nmSegundo": "Andrade",'
+      '        "dtRegistro": "2022-09-12T00:00:00.000Z",'
+      '        "endereco": {'
+      '            "dsCep": "72235-805"'
+      '        }'
+      '    }'
+      ']')
+    Position.X = 8.000000000000000000
+    Position.Y = 45.000000000000000000
+    Size.Width = 649.000000000000000000
+    Size.Height = 460.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Viewport.Width = 629.000000000000000000
+    Viewport.Height = 456.000000000000000000
+  end
+end
